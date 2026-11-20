@@ -29,7 +29,7 @@
         }
         .container {
             background: var(--card);
-            max-width: 740px;
+            max-width: 780px;
             width: 100%;
             padding: 35px;
             border-radius: 16px;
@@ -91,17 +91,48 @@
             background: #0f172a; padding: 25px; border-radius: 12px;
             border-left: 5px solid var(--primary); margin-bottom: 25px;
         }
-        .ranking-row {
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .meta-box {
+            background: #1e293b;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+        .meta-value {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .ranking-item {
+            background: #0f172a;
+            border: 1px solid #263349;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+        .ranking-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 10px;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
         }
         .ranking-name {
             width: 175px;
             flex-shrink: 0;
-            font-weight: 500;
+            font-weight: 600;
         }
         .ranking-bar-bg {
             flex-grow: 1;
@@ -122,6 +153,12 @@
             color: var(--muted);
             font-variant-numeric: tabular-nums;
             flex-shrink: 0;
+        }
+        .ranking-sub {
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.4;
         }
         .axis-row { margin-bottom: 14px; }
         .axis-labels { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; color: var(--muted); }
@@ -160,6 +197,21 @@
             <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase;">Ideologia più affine</div>
             <div id="top-ideology" style="font-size: 1.8rem; font-weight: 700; color: #60a5fa; margin: 6px 0;"></div>
             <div id="second-ideology" style="font-size: 0.95rem; color: var(--muted);"></div>
+
+            <div class="meta-grid">
+                <div class="meta-box">
+                    <div class="meta-label">Partito Politico</div>
+                    <div id="top-party" class="meta-value">-</div>
+                </div>
+                <div class="meta-box">
+                    <div class="meta-label">Nazione Affine</div>
+                    <div id="top-nation" class="meta-value">-</div>
+                </div>
+                <div class="meta-box">
+                    <div class="meta-label">Personaggio</div>
+                    <div id="top-character" class="meta-value">-</div>
+                </div>
+            </div>
         </div>
 
         <h3>Classifica Completa delle Ideologie</h3>
@@ -178,17 +230,55 @@
 <!-- Carica il file con tutte le domande -->
 <script src="questions.js"></script>
 <script>
-    const ALL_IDEOLOGIES = [
-        "Estrema sinistra",
-        "Sinistra",
-        "Centro sinistra",
-        "Centro",
-        "Centro destra",
-        "Destra",
-        "Destra regionalista",
-        "Destra nazionalista",
-        "Estrema destra"
-    ];
+    const ideologyProfiles = {
+        "Estrema sinistra": {
+            party: "Potere al Popolo",
+            nation: "Cuba",
+            character: "Che Guevara"
+        },
+        "Sinistra": {
+            party: "Alleanza Verdi e Sinistra",
+            nation: "Spagna",
+            character: "Enrico Berlinguer"
+        },
+        "Centro sinistra": {
+            party: "Partito Democratico",
+            nation: "Svezia",
+            character: "Jacques Delors"
+        },
+        "Centro": {
+            party: "+Europa / Azione",
+            nation: "Svizzera",
+            character: "Mario Draghi"
+        },
+        "Centro destra": {
+            party: "Forza Italia",
+            nation: "Stati Uniti",
+            character: "Alcide De Gasperi"
+        },
+        "Destra": {
+            party: "Fratelli d'Italia",
+            nation: "Regno Unito",
+            character: "Margaret Thatcher"
+        },
+        "Destra regionalista": {
+            party: "Lega",
+            nation: "Austria",
+            character: "Umberto Bossi"
+        },
+        "Destra nazionalista": {
+            party: "Movimento Nazionale / Sovranista",
+            nation: "Ungheria",
+            character: "Viktor Orbán"
+        },
+        "Estrema destra": {
+            party: "CasaPound",
+            nation: "Giappone imperiale",
+            character: "Yukio Mishima"
+        }
+    };
+
+    const ALL_IDEOLOGIES = Object.keys(ideologyProfiles);
 
     const axisDescriptions = {
         Eco: ["Statalismo / Socialismo", "Libero Mercato / Capitalismo"],
@@ -221,8 +311,6 @@
             ? shuffledAll.slice(0, Math.min(quickCount, shuffledAll.length))
             : shuffledAll;
 
-        // Prepara ogni domanda con le opzioni mescolate una volta per tutta la sessione,
-        // così se torni indietro l'ordine delle opzioni resta coerente.
         activeQuestions = selectedRaw.map(q => ({
             question: q.question,
             options: shuffleArray(q.options)
@@ -317,8 +405,11 @@
         const sortedIdeologies = Object.entries(ideologyPoints).sort((a, b) => b[1] - a[1]);
         const maxPts = sortedIdeologies[0] ? sortedIdeologies[0][1] : 0;
 
+        const topIdeoName = sortedIdeologies[0] ? sortedIdeologies[0][0] : null;
+        const topProfile = topIdeoName ? ideologyProfiles[topIdeoName] : null;
+
         document.getElementById('top-ideology').innerText =
-            maxPts > 0 ? `${sortedIdeologies[0][0]} (${maxPts} pt)` : "Non determinata";
+            maxPts > 0 && topIdeoName ? `${topIdeoName} (${maxPts} pt)` : "Non determinata";
 
         if (sortedIdeologies[1] && sortedIdeologies[1][1] > 0) {
             document.getElementById('second-ideology').innerText =
@@ -327,17 +418,27 @@
             document.getElementById('second-ideology').innerText = "";
         }
 
+        document.getElementById('top-party').innerText = (maxPts > 0 && topProfile) ? topProfile.party : "-";
+        document.getElementById('top-nation').innerText = (maxPts > 0 && topProfile) ? topProfile.nation : "-";
+        document.getElementById('top-character').innerText = (maxPts > 0 && topProfile) ? topProfile.character : "-";
+
         const rankingContainer = document.getElementById('ranking-container');
         rankingContainer.innerHTML = '';
         sortedIdeologies.forEach(([ideo, pts]) => {
             const pct = maxPts > 0 ? Math.round((pts / maxPts) * 100) : 0;
+            const prof = ideologyProfiles[ideo] || { party: "-", nation: "-", character: "-" };
             rankingContainer.innerHTML += `
-                <div class="ranking-row">
-                    <div class="ranking-name">${ideo}</div>
-                    <div class="ranking-bar-bg">
-                        <div class="ranking-bar-fill" style="width: ${pct}%"></div>
+                <div class="ranking-item">
+                    <div class="ranking-header">
+                        <div class="ranking-name">${ideo}</div>
+                        <div class="ranking-bar-bg">
+                            <div class="ranking-bar-fill" style="width: ${pct}%"></div>
+                        </div>
+                        <div class="ranking-pts">${pts} pt</div>
                     </div>
-                    <div class="ranking-pts">${pts} pt</div>
+                    <div class="ranking-sub">
+                        <strong>Partito:</strong> ${prof.party} · <strong>Nazione:</strong> ${prof.nation} · <strong>Personaggio:</strong> ${prof.character}
+                    </div>
                 </div>
             `;
         });
