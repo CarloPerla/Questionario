@@ -115,7 +115,7 @@ const quizData = [
     ]
   },
     {
-    "question": "I datori di lavoro dovrebbero essere obbligati a pagare uomini e donne lo stesso stipendio per lo stesso lavoro? (società)",
+    "question": "I datori di lavoro dovrebbero essere obbligati a pagare uomini e donne lo stesso stipendio per lo stesso lavoro?",
     "options": [
       {
         "text": "No, questo è irrilevante perché il divario salariale di genere è un mito.",
@@ -145,32 +145,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'età pensionabile dovrebbe essere ridotta, anche se ciò comportasse un aumento della spesa pubblica?",
-    "options": [
-      {
-        "text": "Sì, anche a costo di aumentare la spesa pubblica.",
-        "axes": { "Eco": 5, "Società": 10 },
-        "ideologies": ["Estrema sinistra"]
-      },
-      {
-        "text": "Sì, chi svolge lavori fisicamente usuranti merita di andare in pensione con dignità.",
-        "axes": { "Eco": 30, "Società": 20 },
-        "ideologies": ["Sinistra", "Centro sinistra", "Destra", "Centro destra"]
-      },
-      {
-        "text": "No, il sistema è matematicamente insolvente se non lavoriamo più a lungo.",
-        "axes": { "Eco": 60, "Società": 65 },
-        "ideologies": ["Centro"]
-      },
-      {
-        "text": "No, l’età pensionabile deve essere aumentata: morire lavorando per il proprio paese dovrebbe essere l’aspirazione di tutti.",
-        "axes": { "Eco": 90, "Società": 90 },
-        "ideologies": ["Estrema destra"]
-      }
-    ]
-  },
-  {
-    "question": "Il lavoro da remoto dovrebbe essere riconosciuto come un diritto per tutte le professioni in cui è concretamente possibile? (società, autorità)",
+    "question": "Il lavoro da remoto dovrebbe essere riconosciuto come un diritto per tutte le professioni in cui è concretamente possibile?",
     "options": [
       {
         "text": "Sì, ogni lavoratore dovrebbe poter scegliere liberamente da dove lavorare, senza interferenze del datore di lavoro.",
@@ -200,7 +175,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L’abitazione è un diritto? (anche società)",
+    "question": "L’abitazione è un diritto?",
     "options": [
       {
         "text": "Sì, nessuno dovrebbe possedere dieci appartamenti mentre delle famiglie dormono in auto. Lo Stato dovrebbe limitare il numero di immobili che una singola persona o società può possedere.",
@@ -230,7 +205,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe incentivare la costruzione di alloggi a prezzi accessibili? (anche società)",
+    "question": "Il governo dovrebbe incentivare la costruzione di alloggi a prezzi accessibili?",
     "options": [
       {
         "text": "Sì, la casa è un diritto fondamentale che dovrebbe essere accessibile a tutti",
@@ -260,7 +235,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe ripristinare il \"Reddito di Cittadinanza\" per i cittadini disoccupati? (anche società)",
+    "question": "Il governo dovrebbe ripristinare il \"Reddito di Cittadinanza\" per i cittadini disoccupati?",
     "options": [
       {
         "text": "Sì, ma solo con controlli rigorosi per prevenire le frodi",
@@ -285,7 +260,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'Italia dovrebbe aumentare o diminuire la spesa militare? (eco, identità, PE)",
+    "question": "L'Italia dovrebbe aumentare o diminuire la spesa militare?",
     "options": [
       {
         "text": "Né l'uno né l'altro, sono soddisfatto dell'attuale livello di spesa",
@@ -320,7 +295,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe mettere all'asta le concessioni balneari? (economia, anche identità)",
+    "question": "Il governo dovrebbe mettere all'asta le concessioni balneari?",
     "options": [
       {
         "text": "Sì, ma risarcite gli attuali gestori per i loro investimenti",
@@ -345,7 +320,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le tasse universitarie nelle università pubbliche dovrebbero essere gratuite? (economia, società)",
+    "question": "Le tasse universitarie nelle università pubbliche dovrebbero essere gratuite?",
     "options": [
       {
         "text": "Sì, ora sono troppo costose",
@@ -365,7 +340,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe aumentare la spesa per il trasporto pubblico? (economia, ambiente)",
+    "question": "Il governo dovrebbe aumentare la spesa per il trasporto pubblico?",
     "options": [
       {
         "text": "No, ci sono questioni più importanti che necessitano di finanziamenti",
@@ -395,7 +370,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe vietare completamente i tirocini gratuiti e imporre un compenso mensile minimo per tutti gli stagisti? (economia, società)",
+    "question": "Il governo dovrebbe vietare completamente i tirocini gratuiti e imporre un compenso mensile minimo per tutti gli stagisti?",
     "options": [
       {
         "text": "Sì, i tirocini non retribuiti sono sfruttamento e le aziende che usano il lavoro gratuito mascherato da formazione dovrebbero affrontare multe salate",
@@ -411,31 +386,6 @@ const quizData = [
         "text": "No, imporre una retribuzione costringerà le aziende a cancellare i programmi di tirocinio ed escluderà i giovani dal mercato del lavoro",
         "axes": { "Eco": 85, "Società": 90 },
         "ideologies": ["Destra regionalista"]
-      }
-    ]
-  },
-  {
-    "question": "I grandi supermercati e i centri commerciali dovrebbero essere obbligati a chiudere la domenica? (economia, società)",
-    "options": [
-      {
-        "text": "Sì, i lavoratori meritano del tempo libero garantito per la famiglia e per andare a messa",
-        "axes": { "Eco": 40, "Società": 90 },
-        "ideologies": ["Estrema destra", "Centro sinistra"]
-      },
-      {
-        "text": "Sì, la cultura dello shopping 24 ore su 24 avvantaggia le multinazionali a scapito delle piccole botteghe familiari",
-        "axes": { "Eco": 20, "Società": 60 },
-        "ideologies": ["Estrema sinistra", "Destra regionalista", "Sinistra"]
-      },
-      {
-        "text": "No, le chiusure nel fine settimana freneranno la crescita economica e causeranno massicci licenziamenti nel commercio",
-        "axes": { "Eco": 90, "Società": 30 },
-        "ideologies": ["Centro destra", "Sinistra"]
-      },
-      {
-        "text": "No, i consumatori meritano la comodità e i lavoratori volontari meritano la maggiorazione festiva",
-        "axes": { "Eco": 70, "Società": 20 },
-        "ideologies": ["Centro", "Destra nazionalista"]
       }
     ]
   },
@@ -710,36 +660,6 @@ const quizData = [
     ]
   },
   {
-    "question": "La società era migliore molti anni fa od oggi?",
-    "options": [
-      {
-        "text": "Sicuramente oggi: rispetto ad anni la società è migliorata in tutto, dai valori sociali alla medicina…",
-        "axes": { "Società": 0 },
-        "ideologies": ["Estrema sinistra", "Sinistra", "Centro sinistra"]
-      },
-      {
-        "text": "Oggi, nel complesso, i cambiamenti sociali hanno migliorato la società.",
-        "axes": { "Società": 20 },
-        "ideologies": ["Centro"]
-      },
-      {
-        "text": "Oggi, anche se abbiamo perso molti valori positivi del passato.",
-        "axes": { "Società": 40 },
-        "ideologies": ["Centro destra"]
-      },
-      {
-        "text": "Si stava meglio quando si stava peggio.",
-        "axes": { "Società": 80 },
-        "ideologies": ["Destra"]
-      },
-      {
-        "text": "La società moderna è in completo decadimento morale e culturale; dovremmo recuperare i valori e le tradizioni del passato. Duce manchiiiiii!!!!!",
-        "axes": { "Società": 100 },
-        "ideologies": ["Estrema destra"]
-      }
-    ]
-  },
-  {
     "question": "La nostra razza ha molte qualità superiori rispetto alle altre razze?",
     "options": [
       {
@@ -800,7 +720,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe aumentare i finanziamenti per la ricerca e il trattamento della salute mentale? (società, anche economia)",
+    "question": "Il governo dovrebbe aumentare i finanziamenti per la ricerca e il trattamento della salute mentale?",
     "options": [
       {
         "text": "Sì",
@@ -820,7 +740,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le associazioni anti-abortiste dovrebbero poter operare all'interno dei consultori pubblici che gestiscono le richieste di aborto? (società, religione)",
+    "question": "Le associazioni anti-abortiste dovrebbero poter operare all'interno dei consultori pubblici che gestiscono le richieste di aborto?",
     "options": [
       {
         "text": "No, i consultori devono rimanere laici e liberi da interferenze ideologiche.",
@@ -840,7 +760,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Si dovrebbe imporre un tetto massimo alla percentuale di studenti non madrelingua in ogni classe scolastica? (società, identità)",
+    "question": "Si dovrebbe imporre un tetto massimo alla percentuale di studenti non madrelingua in ogni classe scolastica?",
     "options": [
       {
         "text": "No, escludere i bambini in base alla provenienza è segregazionista e viola il loro diritto all'istruzione",
@@ -900,7 +820,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L’Italia dovrebbe tornare a produrre energia nucleare per raggiungere l’indipendenza energetica? (economia, identità nazionale)",
+    "question": "L’Italia dovrebbe tornare a produrre energia nucleare per raggiungere l’indipendenza energetica?",
     "options": [
       {
         "text": "Sì, costruire impianti pubblico-privati e ridurre la dipendenza dal gas estero.",
@@ -920,32 +840,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'energia nucleare dovrebbe essere classificata come \"verde\"? (economia)",
-    "options": [
-      {
-        "text": "Sì, ed è a basse emissioni di carbonio e affidabile",
-        "axes": { "Ambiente": 80, "Eco": 75 },
-        "ideologies": ["Centro destra", "Estrema destra", "Destra"]
-      },
-      {
-        "text": "Sì, ma i rifiuti e la sicurezza devono essere strettamente regolamentati",
-        "axes": { "Ambiente": 65, "Eco": 40 },
-        "ideologies": ["Centro"]
-      },
-      {
-        "text": "No, e i rischi del nucleare superano i benefici climatici",
-        "axes": { "Ambiente": 10, "Eco": 45 },
-        "ideologies": ["Sinistra", "Estrema sinistra"]
-      },
-      {
-        "text": "No, ma può rimanere una fonte energetica di transizione",
-        "axes": { "Ambiente": 35, "Eco": 50 },
-        "ideologies": ["Centro sinistra"]
-      }
-    ]
-  },
-  {
-    "question": "I prodotti usa e getta (come bicchieri, piatti e posate di plastica) che contengono meno del 50% di materiale biodegradabile dovrebbero essere vietati? (economia)",
+    "question": "I prodotti usa e getta (come bicchieri, piatti e posate di plastica) che contengono meno del 50% di materiale biodegradabile dovrebbero essere vietati?",
     "options": [
       {
         "text": "Sì, e alzare il minimo al 75%.",
@@ -970,7 +865,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'Italia dovrebbe espandere le trivellazioni di gas naturale nel Mar Adriatico per ridurre la sua dipendenza dalle importazioni di energia dall'estero? (economia, identità)",
+    "question": "L'Italia dovrebbe espandere le trivellazioni di gas naturale nel Mar Adriatico per ridurre la sua dipendenza dalle importazioni di energia dall'estero?",
     "options": [
       {
         "text": "Solo temporaneamente, per reinvestire i profitti in una rete energetica rinnovabile al 100%.",
@@ -996,31 +891,6 @@ const quizData = [
         "text": "Drill baby drill, drill baby drill",
         "axes": { "Ambiente": 100, "Eco": 100, "Identità": 100 },
         "ideologies": ["Estrema destra", "Destra"]
-      }
-    ]
-  },
-  {
-    "question": "Il governo dovrebbe investire in programmi per ridurre lo spreco alimentare? (economia)",
-    "options": [
-      {
-        "text": "Sì, il cibo marcescente crea massicce emissioni di metano che richiedono un rigoroso intervento statale",
-        "axes": { "Ambiente": 10, "Eco": 15 },
-        "ideologies": ["Estrema sinistra", "Centro sinistra", "Sinistra", "Centro"]
-      },
-      {
-        "text": "Sì, e imporre per legge a supermercati e ristoranti di donare tutto il cibo invenduto commestibile",
-        "axes": { "Ambiente": 0, "Eco": 5 },
-        "ideologies": []
-      },
-      {
-        "text": "Sì, ma solo attraverso sgravi fiscali e educazione pubblica, evitando obblighi aziendali,",
-        "axes": { "Ambiente": 30, "Eco": 60 },
-        "ideologies": ["Centro destra", "Destra"]
-      },
-      {
-        "text": "No, le aziende hanno già un enorme incentivo economico per ridurre al minimo gli sprechi senza l'interferenza dello Stato",
-        "axes": { "Ambiente": 85, "Eco": 95 },
-        "ideologies": ["Estrema destra"]
       }
     ]
   },
@@ -1055,7 +925,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'intelligenza artificiale e le grandi piattaforme tecnologiche devono essere fortemente regolamentate, anche se questo rallenta l'innovazione? (economia, autorità)",
+    "question": "L'intelligenza artificiale e le grandi piattaforme tecnologiche devono essere fortemente regolamentate, anche se questo rallenta l'innovazione?",
     "options": [
       {
         "text": "Sì, l’AI e le grandi piattaforme sono da considerare dei settore chiave per lo Stato, per cui esse devono sottostare al suo volere.",
@@ -1085,7 +955,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe vietare per legge ai minori di 16 anni l’uso delle piattaforme di social media? (anche società)",
+    "question": "Il governo dovrebbe vietare per legge ai minori di 16 anni l’uso delle piattaforme di social media?",
     "options": [
       {
         "text": "No, gli obblighi di verifica dell'età distruggono l'anonimato online: non è possibile che debba caricare la carta d’identità ogni volta che voglio farmi una sega.",
@@ -1120,7 +990,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Ogni cittadino di 18 anni dovrebbe essere obbligato a prestare almeno un anno di servizio militare? (autorità, identità, società, PE)",
+    "question": "Ogni cittadino di 18 anni dovrebbe essere obbligato a prestare almeno un anno di servizio militare?",
     "options": [
       {
         "text": "No, il servizio dovrebbe essere una scelta invece che un obbligo",
@@ -1145,7 +1015,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe sciogliere forzatamente le organizzazioni politiche che usano simboli fascisti o fanno il saluto romano? (autorità, società)",
+    "question": "Il governo dovrebbe sciogliere forzatamente le organizzazioni politiche che usano simboli fascisti o fanno il saluto romano?",
     "options": [
       {
         "text": "Sì, tolleranza zero contro i fasci.",
@@ -1170,7 +1040,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe regolamentare i siti di social media, come mezzo per prevenire fake news e disinformazione? (autorità, anche società)",
+    "question": "Il governo dovrebbe regolamentare i siti di social media, come mezzo per prevenire fake news e disinformazione?",
     "options": [
       {
         "text": "Sì, ci sono troppe fake news e troppa disinformazione sui social media",
@@ -1195,7 +1065,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Dovrebbe essere permesso ai docenti di disciplinare fisicamente gli studenti? (autorità, società)",
+    "question": "Dovrebbe essere permesso ai docenti di disciplinare fisicamente gli studenti?",
     "options": [
       {
         "text": "Sì, picchiare e schernire i bambini che disubbidiscono, o quelli che manifestano comportamenti che deviano dalle normalità (fanno i frocetti)",
@@ -1215,7 +1085,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe vietare agli studenti l'uso degli smartphone durante l'orario scolastico? (autorità, società)",
+    "question": "Il governo dovrebbe vietare agli studenti l'uso degli smartphone durante l'orario scolastico?",
     "options": [
       {
         "text": "Sì, ma con eccezioni per compiti educativi approvati dall'insegnante",
@@ -1240,7 +1110,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'Italia dovrebbe uscire dall'Unione Europea? (identità nazionale)",
+    "question": "L'Italia dovrebbe uscire dall'Unione Europea?",
     "options": [
       {
         "text": "No",
@@ -1265,7 +1135,7 @@ const quizData = [
     ]
   },
   {
-    "question": "L'Italia dovrebbe fornire forniture militari e finanziamenti all'Ucraina? (identità) (PE)",
+    "question": "L'Italia dovrebbe fornire forniture militari e finanziamenti all'Ucraina?",
     "options": [
       {
         "text": "Sì, ma con una rigorosa rendicontazione.",
@@ -1295,7 +1165,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Sostieni una soluzione a due stati per il conflitto israelo-palestinese? (identità) (PE)",
+    "question": "Sostieni una soluzione a due stati per il conflitto israelo-palestinese?",
     "options": [
       {
         "text": "No, eliminare Israele e ridare tutto ai Palestinesi",
@@ -1320,7 +1190,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Dovrebbe essere illegale bruciare la bandiera italiana? (identità, autorità)",
+    "question": "Dovrebbe essere illegale bruciare la bandiera italiana?",
     "options": [
       {
         "text": "No, questa è una violazione della libertà di espressione",
@@ -1377,7 +1247,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le istituzioni e i funzionari pubblici dovrebbero essere multati per l'uso di parole inglesi al posto di quelle italiane nelle comunicazioni ufficiali? (identità, autorità)",
+    "question": "Le istituzioni e i funzionari pubblici dovrebbero essere multati per l'uso di parole inglesi al posto di quelle italiane nelle comunicazioni ufficiali?",
     "options": [
       {
         "text": "No, imporre un nazionalismo linguistico rende il nostro Paese ridicolo e provinciale.",
@@ -1407,7 +1277,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le città storiche come Venezia e Firenze dovrebbero far pagare ai turisti giornalieri un biglietto d'ingresso per visitare il centro? (organizzazione, anche eco e società)",
+    "question": "Le città storiche come Venezia e Firenze dovrebbero far pagare ai turisti giornalieri un biglietto d'ingresso per visitare il centro?",
     "options": [
       {
         "text": "No, è una discriminazione classista che limita la libertà di movimento in base alla ricchezza.",
@@ -1455,45 +1325,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe costruire un ponte che colleghi la Sicilia alla terraferma italiana? (organizzazione, eco, ambiente)",
-    "options": [
-      {
-        "text": "No, bisogna dare priorità al miglioramento delle infrastrutture fatiscenti in Sicilia e Calabria",
-        "axes": {
-          "Eco": 20,
-          "Ambiente": 30
-        },
-        "ideologies": [
-          "Sinistra",
-          "Estrema sinistra",
-          "Centro sinistra"
-        ]
-      },
-      {
-        "text": "No, il rischio sismico è troppo elevato e minaccia l'ecosistema dello Stretto di Messina",
-        "axes": {
-          "Eco": 30,
-          "Ambiente": 0
-        },
-        "ideologies": []
-      },
-      {
-        "text": "Sì, quest'opera storica rilancerà il Mezzogiorno e creerà migliaia di posti di lavoro",
-        "axes": {
-          "Eco": 80,
-          "Ambiente": 100
-        },
-        "ideologies": [
-          "Centro",
-          "Centro destra",
-          "Destra",
-          "Estrema destra"
-        ]
-      }
-    ]
-  },
-  {
-    "question": "Sei favorevole alla depenalizzazione dell'uso di droghe? (giustizia, anche società)",
+    "question": "Sei favorevole alla depenalizzazione dell'uso di droghe?",
     "options": [
       {
         "text": "Sì, per la maggior parte ma non per tutte.",
@@ -1567,7 +1399,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Sostieni la legalizzazione della marijuana? (giustizia, società)",
+    "question": "Sostieni la legalizzazione della marijuana?",
     "options": [
       {
         "text": "Sì, e rilasciare immediatamente chiunque stia scontando una pena solo per reati di droga",
@@ -1627,7 +1459,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le città dovrebbero aprire dei \"rifugi sicuri\" dove le persone dipendenti da droghe illegali possano usarle sotto la supervisione di professionisti medici? (giustizia, società)",
+    "question": "Le città dovrebbero aprire dei \"rifugi sicuri\" dove le persone dipendenti da droghe illegali possano usarle sotto la supervisione di professionisti medici?",
     "options": [
       {
         "text": "Sì, l'abuso di droghe dovrebbe essere trattato come un problema di salute, non come un problema criminale",
@@ -1683,7 +1515,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Ai pazienti terminali dovrebbe essere permesso di porre fine alla propria vita tramite suicidio assistito? (anche sociale)",
+    "question": "Ai pazienti terminali dovrebbe essere permesso di porre fine alla propria vita tramite suicidio assistito?",
     "options": [
       {
         "text": "No",
@@ -2181,7 +2013,7 @@ const quizData = [
     ]
   },
   {
-    "question": "Le scuole pubbliche dovrebbero poter chiudere per festività religiose non cattoliche, come la fine del Ramadan? (religione, società, identità)",
+    "question": "Le scuole pubbliche dovrebbero poter chiudere per festività religiose non cattoliche, come la fine del Ramadan?",
     "options": [
       {
         "text": "No, il calendario scolastico deve rispettare la storia e le radici cattoliche dell'Italia, non le religioni straniere.",
@@ -2494,6 +2326,45 @@ const quizData = [
       }
     ]
   },
+   {
+    "question": "Chi tra questi consideri italiano?",
+    "options": [
+      {
+        "text": "Lui",
+        "axes": {},
+        "ideologies": {}
+      },
+      {
+        "text": "Questo qui",
+        "axes": {},
+        "ideologies": {}
+      },
+      {
+        "text": "Quest'altro",
+        "axes": {},
+        "ideologies": {}
+      },
+      {
+        "text": "Egli",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "Questo",
+        "axes": {},
+        "ideologies": {}
+      },
+      {
+        "text": "Costui",
+        "axes": {},
+        "ideologies": [
+          "Estrema Destra"
+        ]
+      }
+    ]
+  },
   {
     "question": "Qual è il tuo personaggio del Signore degli Anelli preferito?",
     "options": [
@@ -2541,60 +2412,6 @@ const quizData = [
       },
       {
         "text": "Saruman",
-        "axes": {},
-        "ideologies": [
-          "Estrema destra"
-        ]
-      }
-    ]
-  },
-  {
-    "question": "Qual è il tuo film preferito?",
-    "options": [
-      {
-        "text": "La corazzata Potëmkin",
-        "axes": {},
-        "ideologies": [
-          "Estrema sinistra"
-        ]
-      },
-      {
-        "text": "La battaglia di Algeri",
-        "axes": {},
-        "ideologies": [
-          "Sinistra"
-        ]
-      },
-      {
-        "text": "L’armata Brancaleone",
-        "axes": {},
-        "ideologies": [
-          "Centro sinistra"
-        ]
-      },
-      {
-        "text": "Qualcuno volò sul nido del cuculo",
-        "axes": {},
-        "ideologies": [
-          "Centro"
-        ]
-      },
-      {
-        "text": "Forrest Gump",
-        "axes": {},
-        "ideologies": [
-          "Centro destra"
-        ]
-      },
-      {
-        "text": "American Sniper",
-        "axes": {},
-        "ideologies": [
-          "Destra"
-        ]
-      },
-      {
-        "text": "Citizen Vigilante",
         "axes": {},
         "ideologies": [
           "Estrema destra"
