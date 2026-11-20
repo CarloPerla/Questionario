@@ -2330,34 +2330,34 @@ const quizData = [
     "question": "Chi tra questi consideri italiano?",
     "options": [
       {
-        "text": "Lui",
+        "text": "Abubakar",
         "axes": {},
         "ideologies": {}
       },
       {
-        "text": "Questo qui",
+        "text": "Hassan",
         "axes": {},
         "ideologies": {}
       },
       {
-        "text": "Quest'altro",
+        "text": "Giulio",
         "axes": {},
         "ideologies": {}
       },
       {
-        "text": "Egli",
+        "text": "Gianni",
         "axes": {},
         "ideologies": [
           "Destra"
         ]
       },
       {
-        "text": "Questo",
+        "text": "Vincenzo",
         "axes": {},
         "ideologies": {}
       },
       {
-        "text": "Costui",
+        "text": "Franco",
         "axes": {},
         "ideologies": [
           "Estrema Destra"
