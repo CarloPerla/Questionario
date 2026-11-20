@@ -209,11 +209,12 @@
 
     function startQuiz(mode, quickCount = 15) {
         resetState();
+        const shuffledAll = shuffleArray(quizData);
         if (mode === 'quick') {
-            const limit = Math.min(quickCount, quizData.length);
-            activeQuestions = shuffleArray(quizData).slice(0, limit);
+            const limit = Math.min(quickCount, shuffledAll.length);
+            activeQuestions = shuffledAll.slice(0, limit);
         } else {
-            activeQuestions = quizData.slice();
+            activeQuestions = shuffledAll;
         }
 
         document.getElementById('start-screen').classList.add('hidden');
@@ -231,7 +232,8 @@
         const container = document.getElementById('options-container');
         container.innerHTML = '';
 
-        q.options.forEach(opt => {
+        const shuffledOptions = shuffleArray(q.options);
+        shuffledOptions.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt.text;
