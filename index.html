@@ -274,6 +274,13 @@
         </div>
     </div>
 
+    <div id="resume-box" class="hidden" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <button class="btn-primary" style="background: #10b981;" onclick="resumeQuiz()">
+                ▶ Riprendi test in corso (<span id="resume-info"></span>)
+            </button>
+        </div>
+    </div>
+
     <div id="quiz-screen" class="hidden">
         <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
         <div id="counter" style="font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;"></div>
@@ -525,7 +532,65 @@
         return copy;
     }
 
+    const PROGRESS_STORAGE_KEY = "quiz_in_progress_v1";
+
+function saveQuizProgress() {
+    const state = {
+        activeQuestions,
+        userAnswers,
+        currentIdx
+    };
+    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(state));
+}
+
+function clearQuizProgress() {
+    localStorage.removeItem(PROGRESS_STORAGE_KEY);
+    checkSavedProgress();
+}
+
+function checkSavedProgress() {
+    const resumeBox = document.getElementById('resume-box');
+    const resumeInfo = document.getElementById('resume-info');
+    try {
+        const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+        if (!raw) {
+            resumeBox.classList.add('hidden');
+            return;
+        }
+        const state = JSON.parse(raw);
+        if (state && Array.isArray(state.activeQuestions) && state.activeQuestions.length > 0) {
+            resumeInfo.innerText = `Domanda ${state.currentIdx + 1} di ${state.activeQuestions.length}`;
+            resumeBox.classList.remove('hidden');
+        } else {
+            resumeBox.classList.add('hidden');
+        }
+    } catch (e) {
+        resumeBox.classList.add('hidden');
+    }
+}
+
+function resumeQuiz() {
+    try {
+        const state = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY));
+        if (!state) return;
+        activeQuestions = state.activeQuestions;
+        userAnswers = state.userAnswers;
+        currentIdx = state.currentIdx;
+
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
+        renderQuestion();
+    } catch (e) {
+        clearQuizProgress();
+    }
+}
+
+// Controlla subito all'apertura della pagina se c'è una partita salvata
+window.addEventListener('DOMContentLoaded', checkSavedProgress);
+    
     function startQuiz(mode, quickCount = 15) {
+        clearQuizProgress();
         currentIdx = 0;
         const shuffledAll = shuffleArray(quizData);
         const selectedRaw = mode === 'quick'
@@ -545,6 +610,28 @@
         renderQuestion();
     }
 
+    function selectOption(opt) {
+    userAnswers[currentIdx] = opt;
+
+    if (currentIdx < activeQuestions.length - 1) {
+        currentIdx++;
+        saveQuizProgress();
+        renderQuestion();
+    } else {
+        document.getElementById('progress').style.width = '100%';
+        clearQuizProgress();
+        showResults();
+    }
+}
+
+function goBack() {
+    if (currentIdx > 0) {
+        currentIdx--;
+        saveQuizProgress();
+        renderQuestion();
+    }
+}
+    
     function renderQuestion() {
         const q = activeQuestions[currentIdx];
         const savedOpt = userAnswers[currentIdx];
