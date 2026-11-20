@@ -1670,7 +1670,7 @@ const quizData = [
         ]
       },
       {
-        "text": "Ne servirebbero molti più di Mario Ruggero",
+        "text": "Ne servirebbero molti più di Mario Roggero",
         "axes": {
           "Giustizia": 100,
           "Società": 100
@@ -2326,23 +2326,23 @@ const quizData = [
       }
     ]
   },
-   {
+  {
     "question": "Chi tra questi consideri italiano?",
     "options": [
       {
         "text": "Abubakar",
         "axes": {},
-        "ideologies": {}
+        "ideologies": []
       },
       {
         "text": "Hassan",
         "axes": {},
-        "ideologies": {}
+        "ideologies": []
       },
       {
         "text": "Giulio",
         "axes": {},
-        "ideologies": {}
+        "ideologies": []
       },
       {
         "text": "Gianni",
@@ -2354,13 +2354,13 @@ const quizData = [
       {
         "text": "Vincenzo",
         "axes": {},
-        "ideologies": {}
+        "ideologies": []
       },
       {
         "text": "Franco",
         "axes": {},
         "ideologies": [
-          "Estrema Destra"
+          "Estrema destra"
         ]
       }
     ]
