@@ -38,6 +38,124 @@
         }
         h1 { margin-top: 0; font-size: 1.8rem; }
         h3 { margin-top: 28px; margin-bottom: 14px; font-size: 1.15rem; }
+
+        /* Profilo Utente nella schermata iniziale */
+        .profile-setup {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 20px 0;
+        }
+        .profile-setup label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .profile-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #1e293b;
+            color: var(--text);
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+        }
+        .profile-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .avatar-picker {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .avatar-choice {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: #1e293b;
+            color: var(--text);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+            overflow: hidden;
+            padding: 0;
+        }
+        .avatar-choice:hover {
+            border-color: #60a5fa;
+            transform: scale(1.05);
+        }
+        .avatar-choice.active {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.4);
+            background: #172554;
+        }
+        .avatar-choice img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .upload-avatar-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px dashed #64748b;
+            background: transparent;
+            color: var(--muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .upload-avatar-btn:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        /* Header utente nei risultati e nel quiz */
+        .user-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px 16px 6px 6px;
+            width: fit-content;
+            margin-bottom: 18px;
+        }
+        .user-banner-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 1.5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .user-banner-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .user-banner-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+        }
+
         .progress-bar {
             width: 100%; height: 8px; background: var(--border);
             border-radius: 4px; margin-bottom: 20px; overflow: hidden;
@@ -113,6 +231,20 @@
             opacity: 0.4;
             cursor: not-allowed;
         }
+        .btn-reset {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-reset:hover {
+            color: var(--text);
+            border-color: #64748b;
+        }
         .hidden { display: none; }
         .result-card {
             background: #0f172a; padding: 25px; border-radius: 12px;
@@ -171,6 +303,55 @@
             font-size: 0.96rem;
             font-weight: 600;
             color: var(--text);
+        }
+        .goals-card {
+            background: #0f172a;
+            border: 1px solid #263349;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+        }
+        .goals-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+        }
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+        .goal-item.unlocked {
+            background: #172554;
+            border: 1px solid #3b82f6;
+            color: #eff6ff;
+            font-weight: 500;
+        }
+        .goal-item.special-unlocked {
+            background: #312e81;
+            border: 1px solid #818cf8;
+            color: #eef2ff;
+            font-weight: 600;
+            grid-column: 1 / -1;
+        }
+        .goal-item.locked {
+            background: #1e293b;
+            border: 1px dashed #334155;
+            color: var(--muted);
+            opacity: 0.72;
         }
         .ranking-item {
             background: #0f172a;
@@ -268,13 +449,32 @@
         <p style="color: var(--muted); line-height: 1.6;">
             Rispondi alle domande per calcolare il tuo posizionamento politico e scoprire le ideologie più affini alle tue risposte.
         </p>
+
+        <div class="profile-setup">
+            <label for="username-input">Il tuo Nome Utente (opzionale)</label>
+            <input type="text" id="username-input" class="profile-input" placeholder="Es. Marco, Giulia, Cittadino..." maxlength="30" oninput="saveUserProfile()">
+
+            <label>Scegli il tuo Avatar</label>
+            <div class="avatar-picker" id="avatar-picker">
+                <button type="button" class="avatar-choice active" data-avatar="👤" onclick="selectPresetAvatar('👤', this)">👤</button>
+                <button type="button" class="avatar-choice" data-avatar="🦊" onclick="selectPresetAvatar('🦊', this)">🦊</button>
+                <button type="button" class="avatar-choice" data-avatar="🦁" onclick="selectPresetAvatar('🦁', this)">🦁</button>
+                <button type="button" class="avatar-choice" data-avatar="🦉" onclick="selectPresetAvatar('🦉', this)">🦉</button>
+                <button type="button" class="avatar-choice" data-avatar="🐺" onclick="selectPresetAvatar('🐺', this)">🐺</button>
+                <button type="button" class="avatar-choice" data-avatar="🏛️" onclick="selectPresetAvatar('🏛️', this)">🏛️</button>
+                <button type="button" class="avatar-choice" data-avatar="⚖️" onclick="selectPresetAvatar('⚖️', this)">⚖️</button>
+                <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
+                <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
+                <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+            </div>
+        </div>
+
         <div class="btn-group">
             <button class="btn-primary" onclick="startQuiz('full')">Test Completo (Tutte le domande)</button>
             <button class="btn-secondary" onclick="startQuiz('quick', 15)">Modalità Rapida (15 domande)</button>
         </div>
-    </div>
 
-    <div id="resume-box" class="hidden" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+        <div id="resume-box" class="hidden" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
             <button class="btn-primary" style="background: #10b981;" onclick="resumeQuiz()">
                 ▶ Riprendi test in corso (<span id="resume-info"></span>)
             </button>
@@ -296,6 +496,11 @@
     </div>
 
     <div id="result-screen" class="hidden">
+        <div id="result-user-banner" class="user-banner">
+            <div id="result-user-avatar" class="user-banner-avatar">👤</div>
+            <div id="result-user-name" class="user-banner-name">Ospite</div>
+        </div>
+
         <h1>Il tuo Profilo Politico</h1>
         <div class="result-card">
             <div class="result-hero">
@@ -332,11 +537,17 @@
             </div>
         </div>
 
+        <h3>Obiettivi Sbloccati</h3>
+        <div class="goals-card">
+            <div class="goals-top">
+                <span id="goals-counter">0 / 8 ideologie sbloccate</span>
+                <button class="btn-reset" onclick="resetAllGoals()">Azzera obiettivi</button>
+            </div>
+            <div id="goals-container" class="goals-grid"></div>
+        </div>
+
         <h3>Classifica Completa delle Ideologie</h3>
         <div id="ranking-container"></div>
-
-        <h3>Dettaglio sugli 8 Assi (0 - 100)</h3>
-        <div id="axes-container"></div>
 
         <h3>Ottagono degli 8 Assi</h3>
         <div class="octagon-card">
@@ -346,7 +557,11 @@
             </div>
         </div>
 
+        <h3>Dettaglio sugli 8 Assi (0 - 100)</h3>
+        <div id="axes-container"></div>
+
         <div class="btn-group">
+            <button class="btn-secondary" onclick="backToHome()">Torna alla Home</button>
             <button class="btn-secondary" onclick="startQuiz('quick', 15)">Ripeti test (Modalità rapida)</button>
             <button class="btn-primary" onclick="startQuiz('full')">Ripeti test completo</button>
         </div>
@@ -356,6 +571,144 @@
 <!-- Carica il file con tutte le domande -->
 <script src="questions.js"></script>
 <script>
+    const USER_PROFILE_KEY = "quiz_user_profile_v1";
+    const PROGRESS_STORAGE_KEY = "quiz_in_progress_v1";
+    const GOALS_STORAGE_KEY = "quiz_unlocked_ideologies_v1";
+    const SPECIAL_GOALS_KEY = "quiz_special_goals_v1";
+
+    let userProfile = {
+        name: "",
+        avatar: "👤",
+        isImage: false
+    };
+
+    function loadUserProfile() {
+        try {
+            const raw = localStorage.getItem(USER_PROFILE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && typeof parsed === "object") {
+                    userProfile = {
+                        name: parsed.name || "",
+                        avatar: parsed.avatar || "👤",
+                        isImage: Boolean(parsed.isImage)
+                    };
+                }
+            }
+        } catch (e) {}
+
+        const nameInput = document.getElementById("username-input");
+        if (nameInput) nameInput.value = userProfile.name;
+
+        document.querySelectorAll(".avatar-choice").forEach(btn => btn.classList.remove("active"));
+
+        if (userProfile.isImage && userProfile.avatar) {
+            const previewBtn = document.getElementById("custom-avatar-preview");
+            if (previewBtn) {
+                previewBtn.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
+                previewBtn.classList.remove("hidden");
+                previewBtn.classList.add("active");
+            }
+        } else {
+            const matchingBtn = Array.from(document.querySelectorAll(".avatar-choice[data-avatar]"))
+                .find(btn => btn.dataset.avatar === userProfile.avatar);
+            if (matchingBtn) {
+                matchingBtn.classList.add("active");
+            } else {
+                const defaultBtn = document.querySelector('.avatar-choice[data-avatar="👤"]');
+                if (defaultBtn) defaultBtn.classList.add("active");
+            }
+        }
+    }
+
+    function saveUserProfile() {
+        const nameInput = document.getElementById("username-input");
+        if (nameInput) {
+            userProfile.name = nameInput.value.trim();
+        }
+        try {
+            localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(userProfile));
+        } catch (e) {}
+    }
+
+    function selectPresetAvatar(emoji, btnEl) {
+        userProfile.avatar = emoji;
+        userProfile.isImage = false;
+        document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
+        if (btnEl) btnEl.classList.add("active");
+        saveUserProfile();
+    }
+
+    function selectCustomAvatar() {
+        const previewBtn = document.getElementById("custom-avatar-preview");
+        const img = previewBtn ? previewBtn.querySelector("img") : null;
+        if (!img) return;
+        userProfile.avatar = img.src;
+        userProfile.isImage = true;
+        document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
+        previewBtn.classList.add("active");
+        saveUserProfile();
+    }
+
+    function handleAvatarUpload(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement("canvas");
+                const size = 128;
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext("2d");
+
+                const minSide = Math.min(img.width, img.height);
+                const sx = (img.width - minSide) / 2;
+                const sy = (img.height - minSide) / 2;
+                ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, size, size);
+
+                const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+                userProfile.avatar = dataUrl;
+                userProfile.isImage = true;
+
+                const previewBtn = document.getElementById("custom-avatar-preview");
+                if (previewBtn) {
+                    previewBtn.innerHTML = `<img src="${dataUrl}" alt="Avatar">`;
+                    previewBtn.classList.remove("hidden");
+                    document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
+                    previewBtn.classList.add("active");
+                }
+                saveUserProfile();
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function renderResultUserBanner() {
+        const nameEl = document.getElementById("result-user-name");
+        const avatarEl = document.getElementById("result-user-avatar");
+        if (nameEl) {
+            nameEl.innerText = userProfile.name ? userProfile.name : "Utente Ospite";
+        }
+        if (avatarEl) {
+            if (userProfile.isImage && userProfile.avatar) {
+                avatarEl.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
+            } else {
+                avatarEl.innerText = userProfile.avatar || "👤";
+            }
+        }
+    }
+
+    function backToHome() {
+        document.getElementById("result-screen").classList.add("hidden");
+        document.getElementById("quiz-screen").classList.add("hidden");
+        document.getElementById("start-screen").classList.remove("hidden");
+        checkSavedProgress();
+    }
+
     const ideologyProfiles = {
         "Estrema sinistra": {
             party: "Potere al Popolo",
@@ -428,7 +781,7 @@
         { keywords: ["aragorn"], image: "images/lotr-aragorn.jpg" },
         { keywords: ["gandalf"], image: "images/lotr-gandalf.jpg" },
         { keywords: ["frodo"], image: "images/lotr-frodo.jpg" },
-        { keywords: ["samwise", "samvise", "sam gamgee", "sam "], image: "images/lotr-sam.jpg" },
+        { keywords: ["samwise", "samvise", "sam gamgee", "sam"], image: "images/lotr-sam.jpg" },
         { keywords: ["saruman"], image: "images/lotr-saruman.jpg" },
         { keywords: ["faramir"], image: "images/lotr-faramir.jpg" },
         { keywords: ["theoden", "théoden"], image: "images/lotr-theoden.jpg" },
@@ -444,21 +797,22 @@
         { keywords: ["tajans"], image: "images/cena-tajans.jpg" },
 
         // Italiani
-        { keywords: ["Abubakar"], image: "images/nero-italiano.jpg" },
-        { keywords: ["Hassan"], image: "images/paki.jpg" },
-        { keywords: ["Giulio"], image: "images/italiano.jpg" },
-        { keywords: ["Vincenzo"], image: "images/stereotipo-ita.jpg" },
-        { keywords: ["Gianni"], image: "images/ricco-ita.jpg" },
-        { keywords: ["Franco"], image: "images/caramba.jpg" }
+        { keywords: ["abubakar"], image: "images/nero-italiano.jpg" },
+        { keywords: ["hassan"], image: "images/paki.jpg" },
+        { keywords: ["giulio"], image: "images/italiano.jpg" },
+        { keywords: ["vincenzo"], image: "images/stereotipo-ita.jpg" },
+        { keywords: ["gianni"], image: "images/ricco-ita.jpg" },
+        { keywords: ["franco"], image: "images/caramba.jpg" }
     ];
 
     function findEntityImage(text, explicitImage) {
         if (explicitImage) return explicitImage;
         if (!text) return null;
-        const lower = ` ${text.toLowerCase()} `;
         for (const entry of entityImages) {
             for (const kw of entry.keywords) {
-                if (lower.includes(kw.toLowerCase())) {
+                const escaped = kw.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(^|[^a-zA-ZÀ-ÿ0-9])${escaped}($|[^a-zA-ZÀ-ÿ0-9])`, 'i');
+                if (regex.test(text)) {
                     return entry.image;
                 }
             }
@@ -467,6 +821,99 @@
     }
 
     const ALL_IDEOLOGIES = Object.keys(ideologyProfiles);
+
+    function getUnlockedIdeologies() {
+        try {
+            const raw = JSON.parse(localStorage.getItem(GOALS_STORAGE_KEY) || "[]");
+            if (!Array.isArray(raw)) return [];
+            return raw.filter(name => ALL_IDEOLOGIES.includes(name));
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveUnlockedIdeology(ideoName) {
+        if (!ideoName || !ALL_IDEOLOGIES.includes(ideoName)) return getUnlockedIdeologies();
+        const current = new Set(getUnlockedIdeologies());
+        current.add(ideoName);
+        const updated = Array.from(current);
+        localStorage.setItem(GOALS_STORAGE_KEY, JSON.stringify(updated));
+        return updated;
+    }
+
+    function getUnlockedSpecialGoals() {
+        try {
+            const raw = JSON.parse(localStorage.getItem(SPECIAL_GOALS_KEY) || "[]");
+            return Array.isArray(raw) ? raw : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveSpecialGoal(label) {
+        const current = new Set(getUnlockedSpecialGoals());
+        current.add(label);
+        const updated = Array.from(current);
+        localStorage.setItem(SPECIAL_GOALS_KEY, JSON.stringify(updated));
+        return updated;
+    }
+
+    function checkPureIdeologyRun() {
+        if (typeof quizData === "undefined" || !Array.isArray(quizData)) return null;
+        if (activeQuestions.length !== quizData.length || !userAnswers.every(Boolean)) return null;
+
+        for (const targetIdeo of ALL_IDEOLOGIES) {
+            const target = targetIdeo.toLowerCase();
+            const allMatch = userAnswers.every(opt => {
+                if (!opt || !Array.isArray(opt.ideologies)) return false;
+                return opt.ideologies.some(ideo => {
+                    const k = String(ideo).trim().toLowerCase();
+                    if (k === "destra") {
+                        return target === "destra regionalista" || target === "destra nazionalista";
+                    }
+                    return k === target;
+                });
+            });
+            if (allMatch) {
+                return `Coerenza assoluta: hai scelto "${targetIdeo.toLowerCase()}" in tutte le domande del test completo`;
+            }
+        }
+        return null;
+    }
+
+    function renderAllGoals(unlockedList, specialList) {
+        const container = document.getElementById("goals-container");
+        const counter = document.getElementById("goals-counter");
+        if (!container || !counter) return;
+
+        const unlockedSet = new Set(unlockedList);
+        counter.innerText = `${unlockedSet.size} / ${ALL_IDEOLOGIES.length} ideologie sbloccate`;
+
+        const standardHtml = ALL_IDEOLOGIES.map(ideo => {
+            const isUnlocked = unlockedSet.has(ideo);
+            return `
+                <div class="goal-item ${isUnlocked ? "unlocked" : "locked"}">
+                    <span>${isUnlocked ? "✅" : "🔒"}</span>
+                    <span>Hai ottenuto l'ideologia "${ideo.toLowerCase()}"</span>
+                </div>
+            `;
+        }).join("");
+
+        const specialHtml = (specialList || []).map(label => `
+            <div class="goal-item special-unlocked">
+                <span>🏆</span>
+                <span>${label}</span>
+            </div>
+        `).join("");
+
+        container.innerHTML = standardHtml + specialHtml;
+    }
+
+    function resetAllGoals() {
+        localStorage.removeItem(GOALS_STORAGE_KEY);
+        localStorage.removeItem(SPECIAL_GOALS_KEY);
+        renderAllGoals([], []);
+    }
 
     const AXES_ORDER = [
         "Economia",
@@ -523,6 +970,66 @@
     let userAnswers = [];
     let currentIdx = 0;
 
+    function saveQuizProgress() {
+        const state = {
+            activeQuestions,
+            userAnswers,
+            currentIdx
+        };
+        try {
+            localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {}
+    }
+
+    function clearQuizProgress() {
+        localStorage.removeItem(PROGRESS_STORAGE_KEY);
+        checkSavedProgress();
+    }
+
+    function checkSavedProgress() {
+        const resumeBox = document.getElementById("resume-box");
+        const resumeInfo = document.getElementById("resume-info");
+        if (!resumeBox || !resumeInfo) return;
+        try {
+            const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+            if (!raw) {
+                resumeBox.classList.add("hidden");
+                return;
+            }
+            const state = JSON.parse(raw);
+            if (state && Array.isArray(state.activeQuestions) && state.activeQuestions.length > 0) {
+                resumeInfo.innerText = `Domanda ${state.currentIdx + 1} di ${state.activeQuestions.length}`;
+                resumeBox.classList.remove("hidden");
+            } else {
+                resumeBox.classList.add("hidden");
+            }
+        } catch (e) {
+            resumeBox.classList.add("hidden");
+        }
+    }
+
+    function resumeQuiz() {
+        try {
+            const state = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY));
+            if (!state) return;
+            activeQuestions = state.activeQuestions;
+            userAnswers = state.userAnswers;
+            currentIdx = state.currentIdx;
+
+            document.getElementById("start-screen").classList.add("hidden");
+            document.getElementById("result-screen").classList.add("hidden");
+            document.getElementById("quiz-screen").classList.remove("hidden");
+            renderQuestion();
+        } catch (e) {
+            clearQuizProgress();
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        loadUserProfile();
+        checkSavedProgress();
+    });
+
     function shuffleArray(arr) {
         const copy = arr.slice();
         for (let i = copy.length - 1; i > 0; i--) {
@@ -532,64 +1039,8 @@
         return copy;
     }
 
-    const PROGRESS_STORAGE_KEY = "quiz_in_progress_v1";
-
-function saveQuizProgress() {
-    const state = {
-        activeQuestions,
-        userAnswers,
-        currentIdx
-    };
-    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(state));
-}
-
-function clearQuizProgress() {
-    localStorage.removeItem(PROGRESS_STORAGE_KEY);
-    checkSavedProgress();
-}
-
-function checkSavedProgress() {
-    const resumeBox = document.getElementById('resume-box');
-    const resumeInfo = document.getElementById('resume-info');
-    try {
-        const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
-        if (!raw) {
-            resumeBox.classList.add('hidden');
-            return;
-        }
-        const state = JSON.parse(raw);
-        if (state && Array.isArray(state.activeQuestions) && state.activeQuestions.length > 0) {
-            resumeInfo.innerText = `Domanda ${state.currentIdx + 1} di ${state.activeQuestions.length}`;
-            resumeBox.classList.remove('hidden');
-        } else {
-            resumeBox.classList.add('hidden');
-        }
-    } catch (e) {
-        resumeBox.classList.add('hidden');
-    }
-}
-
-function resumeQuiz() {
-    try {
-        const state = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY));
-        if (!state) return;
-        activeQuestions = state.activeQuestions;
-        userAnswers = state.userAnswers;
-        currentIdx = state.currentIdx;
-
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('result-screen').classList.add('hidden');
-        document.getElementById('quiz-screen').classList.remove('hidden');
-        renderQuestion();
-    } catch (e) {
-        clearQuizProgress();
-    }
-}
-
-// Controlla subito all'apertura della pagina se c'è una partita salvata
-window.addEventListener('DOMContentLoaded', checkSavedProgress);
-    
     function startQuiz(mode, quickCount = 15) {
+        saveUserProfile();
         clearQuizProgress();
         currentIdx = 0;
         const shuffledAll = shuffleArray(quizData);
@@ -610,28 +1061,6 @@ window.addEventListener('DOMContentLoaded', checkSavedProgress);
         renderQuestion();
     }
 
-    function selectOption(opt) {
-    userAnswers[currentIdx] = opt;
-
-    if (currentIdx < activeQuestions.length - 1) {
-        currentIdx++;
-        saveQuizProgress();
-        renderQuestion();
-    } else {
-        document.getElementById('progress').style.width = '100%';
-        clearQuizProgress();
-        showResults();
-    }
-}
-
-function goBack() {
-    if (currentIdx > 0) {
-        currentIdx--;
-        saveQuizProgress();
-        renderQuestion();
-    }
-}
-    
     function renderQuestion() {
         const q = activeQuestions[currentIdx];
         const savedOpt = userAnswers[currentIdx];
@@ -684,9 +1113,11 @@ function goBack() {
 
         if (currentIdx < activeQuestions.length - 1) {
             currentIdx++;
+            saveQuizProgress();
             renderQuestion();
         } else {
             document.getElementById('progress').style.width = '100%';
+            clearQuizProgress();
             showResults();
         }
     }
@@ -694,6 +1125,7 @@ function goBack() {
     function goBack() {
         if (currentIdx > 0) {
             currentIdx--;
+            saveQuizProgress();
             renderQuestion();
         }
     }
@@ -764,7 +1196,6 @@ function goBack() {
             };
         };
 
-        // Ottagoni concentrici di guida (punta = 0, centro = 100)
         const levels = [0, 25, 50, 75];
         let gridSvg = '';
         levels.forEach(lvl => {
@@ -778,7 +1209,6 @@ function goBack() {
             gridSvg += `<polygon points="${pts}" fill="none" stroke="${isOuter ? '#475569' : '#334155'}" stroke-width="${isOuter ? 2 : 1}" ${isMid ? 'stroke-dasharray="4 4"' : ''} />`;
         });
 
-        // Raggi dal centro alle 8 punte + etichette
         let spokesSvg = '';
         let labelsSvg = '';
         const valuePoints = [];
@@ -789,7 +1219,6 @@ function goBack() {
             const outerP = getPoint(i, maxRadius);
             spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${outerP.x.toFixed(1)}" y2="${outerP.y.toFixed(1)}" stroke="#334155" stroke-width="1" />`;
 
-            // Punta = 0 (raggio maxRadius), Centro = 100 (raggio 0)
             const rVal = maxRadius * ((100 - val) / 100);
             const valP = getPoint(i, rVal);
             valuePoints.push(`${valP.x.toFixed(1)},${valP.y.toFixed(1)}`);
@@ -834,12 +1263,19 @@ function goBack() {
         document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 
+        renderResultUserBanner();
+
         const { axisTotals, axisCounts, ideologyPoints } = computeScores();
         const sortedIdeologies = Object.entries(ideologyPoints).sort((a, b) => b[1] - a[1]);
         const maxPts = sortedIdeologies[0] ? sortedIdeologies[0][1] : 0;
 
-        const topIdeoName = sortedIdeologies[0] ? sortedIdeologies[0][0] : null;
+        const topIdeoName = maxPts > 0 && sortedIdeologies[0] ? sortedIdeologies[0][0] : null;
         const topProfile = topIdeoName ? ideologyProfiles[topIdeoName] : null;
+
+        const unlockedList = topIdeoName ? saveUnlockedIdeology(topIdeoName) : getUnlockedIdeologies();
+        const pureRunGoal = checkPureIdeologyRun();
+        const specialList = pureRunGoal ? saveSpecialGoal(pureRunGoal) : getUnlockedSpecialGoals();
+        renderAllGoals(unlockedList, specialList);
 
         document.getElementById('top-ideology').innerText =
             maxPts > 0 && topIdeoName ? `${topIdeoName} (${maxPts} pt)` : "Non determinata";
