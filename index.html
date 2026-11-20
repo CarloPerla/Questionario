@@ -53,6 +53,17 @@
             cursor: pointer; text-align: left; transition: all 0.15s; line-height: 1.4;
         }
         button.option-btn:hover { border-color: var(--primary); background: #1e3a8a; }
+        button.option-btn.selected {
+            border-color: #60a5fa;
+            background: #172554;
+            box-shadow: inset 0 0 0 1px #60a5fa;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -60,17 +71,21 @@
             margin-top: 22px;
         }
         .btn-primary {
-            background: var(--primary); color: white; border: none; padding: 13px 24px;
-            border-radius: 10px; font-size: 0.98rem; font-weight: 600; cursor: pointer;
+            background: var(--primary); color: white; border: none; padding: 12px 22px;
+            border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
             transition: background 0.15s;
         }
         .btn-primary:hover { background: var(--primary-hover); }
         .btn-secondary {
-            background: var(--secondary); color: white; border: 1px solid #475569; padding: 13px 20px;
-            border-radius: 10px; font-size: 0.98rem; font-weight: 600; cursor: pointer;
+            background: var(--secondary); color: white; border: 1px solid #475569; padding: 11px 18px;
+            border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
             transition: background 0.15s;
         }
-        .btn-secondary:hover { background: var(--secondary-hover); }
+        .btn-secondary:hover:not(:disabled) { background: var(--secondary-hover); }
+        .btn-secondary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
         .hidden { display: none; }
         .result-card {
             background: #0f172a; padding: 25px; border-radius: 12px;
@@ -120,7 +135,7 @@
     <div id="start-screen">
         <h1>Test di Orientamento Politico</h1>
         <p style="color: var(--muted); line-height: 1.6;">
-            Rispondi alle domande per calcolare il tuo posizionamento sugli 8 assi politici e scoprire la classifica delle ideologie più affini alle tue risposte[cite: 1, 2].
+            Rispondi alle domande per calcolare il tuo posizionamento sugli 8 assi politici e scoprire la classifica delle ideologie più affini alle tue risposte.
         </p>
         <div class="btn-group">
             <button class="btn-primary" onclick="startQuiz('full')">Test Completo (Tutte le domande)</button>
@@ -133,6 +148,10 @@
         <div id="counter" style="font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;"></div>
         <div class="question-text" id="question-text"></div>
         <div class="options" id="options-container"></div>
+        <div class="nav-bar">
+            <button id="back-btn" class="btn-secondary" onclick="goBack()">← Indietro</button>
+            <span id="hint-text" style="font-size: 0.82rem; color: var(--muted);">Seleziona un'opzione per avanzare</span>
+        </div>
     </div>
 
     <div id="result-screen" class="hidden">
@@ -183,20 +202,8 @@
     };
 
     let activeQuestions = [];
+    let userAnswers = [];
     let currentIdx = 0;
-    let axisTotals = {};
-    let axisCounts = {};
-    let ideologyPoints = {};
-
-    function resetState() {
-        currentIdx = 0;
-        axisTotals = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
-        axisCounts = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
-        ideologyPoints = {};
-        ALL_IDEOLOGIES.forEach(ideo => {
-            ideologyPoints[ideo] = 0;
-        });
-    }
 
     function shuffleArray(arr) {
         const copy = arr.slice();
@@ -208,14 +215,19 @@
     }
 
     function startQuiz(mode, quickCount = 15) {
-        resetState();
+        currentIdx = 0;
         const shuffledAll = shuffleArray(quizData);
-        if (mode === 'quick') {
-            const limit = Math.min(quickCount, shuffledAll.length);
-            activeQuestions = shuffledAll.slice(0, limit);
-        } else {
-            activeQuestions = shuffledAll;
-        }
+        const selectedRaw = mode === 'quick'
+            ? shuffledAll.slice(0, Math.min(quickCount, shuffledAll.length))
+            : shuffledAll;
+
+        // Prepara ogni domanda con le opzioni mescolate una volta per tutta la sessione,
+        // così se torni indietro l'ordine delle opzioni resta coerente.
+        activeQuestions = selectedRaw.map(q => ({
+            question: q.question,
+            options: shuffleArray(q.options)
+        }));
+        userAnswers = new Array(activeQuestions.length).fill(null);
 
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.add('hidden');
@@ -225,17 +237,22 @@
 
     function renderQuestion() {
         const q = activeQuestions[currentIdx];
+        const savedOpt = userAnswers[currentIdx];
+
         document.getElementById('counter').innerText = `Domanda ${currentIdx + 1} di ${activeQuestions.length}`;
         document.getElementById('question-text').innerText = q.question;
         document.getElementById('progress').style.width = `${(currentIdx / activeQuestions.length) * 100}%`;
+        document.getElementById('back-btn').disabled = currentIdx === 0;
 
         const container = document.getElementById('options-container');
         container.innerHTML = '';
 
-        const shuffledOptions = shuffleArray(q.options);
-        shuffledOptions.forEach(opt => {
+        q.options.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
+            if (savedOpt && savedOpt.text === opt.text) {
+                btn.classList.add('selected');
+            }
             btn.innerText = opt.text;
             btn.onclick = () => selectOption(opt);
             container.appendChild(btn);
@@ -243,25 +260,10 @@
     }
 
     function selectOption(opt) {
-        if (opt.axes) {
-            for (const [axis, val] of Object.entries(opt.axes)) {
-                if (axisTotals.hasOwnProperty(axis)) {
-                    axisTotals[axis] += val;
-                    axisCounts[axis] += 1;
-                }
-            }
-        }
-        if (opt.ideologies) {
-            opt.ideologies.forEach(ideo => {
-                const key = ideo.trim();
-                if (key && key.toLowerCase() !== 'nessuno' && key.toLowerCase() !== 'nessuna') {
-                    ideologyPoints[key] = (ideologyPoints[key] || 0) + 1;
-                }
-            });
-        }
+        userAnswers[currentIdx] = opt;
 
-        currentIdx++;
-        if (currentIdx < activeQuestions.length) {
+        if (currentIdx < activeQuestions.length - 1) {
+            currentIdx++;
             renderQuestion();
         } else {
             document.getElementById('progress').style.width = '100%';
@@ -269,10 +271,49 @@
         }
     }
 
+    function goBack() {
+        if (currentIdx > 0) {
+            currentIdx--;
+            renderQuestion();
+        }
+    }
+
+    function computeScores() {
+        const axisTotals = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
+        const axisCounts = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
+        const ideologyPoints = {};
+        ALL_IDEOLOGIES.forEach(ideo => {
+            ideologyPoints[ideo] = 0;
+        });
+
+        userAnswers.forEach(opt => {
+            if (!opt) return;
+            if (opt.axes) {
+                for (const [axis, val] of Object.entries(opt.axes)) {
+                    if (axisTotals.hasOwnProperty(axis)) {
+                        axisTotals[axis] += val;
+                        axisCounts[axis] += 1;
+                    }
+                }
+            }
+            if (opt.ideologies) {
+                opt.ideologies.forEach(ideo => {
+                    const key = ideo.trim();
+                    if (key && key.toLowerCase() !== 'nessuno' && key.toLowerCase() !== 'nessuna') {
+                        ideologyPoints[key] = (ideologyPoints[key] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        return { axisTotals, axisCounts, ideologyPoints };
+    }
+
     function showResults() {
         document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 
+        const { axisTotals, axisCounts, ideologyPoints } = computeScores();
         const sortedIdeologies = Object.entries(ideologyPoints).sort((a, b) => b[1] - a[1]);
         const maxPts = sortedIdeologies[0] ? sortedIdeologies[0][1] : 0;
 
@@ -286,7 +327,6 @@
             document.getElementById('second-ideology').innerText = "";
         }
 
-        // Classifica completa ideologie
         const rankingContainer = document.getElementById('ranking-container');
         rankingContainer.innerHTML = '';
         sortedIdeologies.forEach(([ideo, pts]) => {
@@ -302,7 +342,6 @@
             `;
         });
 
-        // Barre degli 8 assi
         const axesContainer = document.getElementById('axes-container');
         axesContainer.innerHTML = '';
         for (const [axis, total] of Object.entries(axisTotals)) {
