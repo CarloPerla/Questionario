@@ -904,8 +904,447 @@ const quizData = [
       },
       {
         "text": "Non esiste, il clima è sempre cambiato e il mondo si è sempre adattato.",
-        "axes": { "Ambiente": 1
-                 {
+        "axes": { "Ambiente": 100 },
+        "ideologies": ["Estrema destra"]
+      },
+      {
+        "text": "È un problema reale, ma gestibile attraverso innovazione tecnologica e sviluppo economico.",
+        "axes": { "Ambiente": 50 },
+        "ideologies": ["Centro", "Centro destra"]
+      },
+      {
+        "text": "È un problema sopravvalutato ed ideologico.",
+        "axes": { "Ambiente": 90 },
+        "ideologies": ["Destra nazionalista"]
+      },
+      {
+        "text": "Poco, dobbiamo pensare all’economia, evitando una massiccia de-industrializzazione",
+        "axes": { "Ambiente": 80 },
+        "ideologies": ["Destra regionalista"]
+      }
+    ]
+  },
+  {
+    "question": "L’Italia dovrebbe tornare a produrre energia nucleare per raggiungere l’indipendenza energetica? (economia, identità nazionale)",
+    "options": [
+      {
+        "text": "Sì, costruire impianti pubblico-privati e ridurre la dipendenza dal gas estero.",
+        "axes": { "Ambiente": 75, "Eco": 40, "Identità": 85 },
+        "ideologies": ["Destra regionalista", "Centro", "Centro destra"]
+      },
+      {
+        "text": "Sì, investire subito in piccoli reattori per un’energia pulita, sicura e stabile",
+        "axes": { "Ambiente": 60, "Eco": 50, "Identità": 75 },
+        "ideologies": ["Destra nazionalista", "Estrema destra"]
+      },
+      {
+        "text": "No, concentrarsi sulle rinnovabili (eolico/solare) come unico percorso sostenibile",
+        "axes": { "Ambiente": 15, "Eco": 30, "Identità": 40 },
+        "ideologies": ["Sinistra", "Centro sinistra", "Estrema sinistra"]
+      }
+    ]
+  },
+  {
+    "question": "L'energia nucleare dovrebbe essere classificata come \"verde\"? (economia)",
+    "options": [
+      {
+        "text": "Sì, ed è a basse emissioni di carbonio e affidabile",
+        "axes": { "Ambiente": 80, "Eco": 75 },
+        "ideologies": ["Centro destra", "Estrema destra", "Destra"]
+      },
+      {
+        "text": "Sì, ma i rifiuti e la sicurezza devono essere strettamente regolamentati",
+        "axes": { "Ambiente": 65, "Eco": 40 },
+        "ideologies": ["Centro"]
+      },
+      {
+        "text": "No, e i rischi del nucleare superano i benefici climatici",
+        "axes": { "Ambiente": 10, "Eco": 45 },
+        "ideologies": ["Sinistra", "Estrema sinistra"]
+      },
+      {
+        "text": "No, ma può rimanere una fonte energetica di transizione",
+        "axes": { "Ambiente": 35, "Eco": 50 },
+        "ideologies": ["Centro sinistra"]
+      }
+    ]
+  },
+  {
+    "question": "I prodotti usa e getta (come bicchieri, piatti e posate di plastica) che contengono meno del 50% di materiale biodegradabile dovrebbero essere vietati? (economia)",
+    "options": [
+      {
+        "text": "Sì, e alzare il minimo al 75%.",
+        "axes": { "Ambiente": 0, "Eco": 10 },
+        "ideologies": ["Destra nazionalista", "Estrema sinistra", "Centro", "Sinistra"]
+      },
+      {
+        "text": "Sì, devono avere almeno il 50%.",
+        "axes": { "Ambiente": 20, "Eco": 20 },
+        "ideologies": ["Centro sinistra", "Sinistra"]
+      },
+      {
+        "text": "No, ma aumentare gli incentivi fiscali per le aziende che producono prodotti biodegradabili",
+        "axes": { "Ambiente": 40, "Eco": 50 },
+        "ideologies": ["Destra regionalista", "Centro destra"]
+      },
+      {
+        "text": "No, provocherebbe un danno economico enorme per molte aziende italiane.",
+        "axes": { "Ambiente": 90, "Eco": 90 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "L'Italia dovrebbe espandere le trivellazioni di gas naturale nel Mar Adriatico per ridurre la sua dipendenza dalle importazioni di energia dall'estero? (economia, identità)",
+    "options": [
+      {
+        "text": "Solo temporaneamente, per reinvestire i profitti in una rete energetica rinnovabile al 100%.",
+        "axes": { "Ambiente": 55, "Eco": 30, "Identità": 60 },
+        "ideologies": ["Sinistra"]
+      },
+      {
+        "text": "Le trivellazioni sono necessarie per reperire maggiori risorse energetiche, abbassare le bollette e porre fine alla dipendenza dalle dittature straniere",
+        "axes": { "Ambiente": 95, "Eco": 80, "Identità": 95 },
+        "ideologies": ["Estrema destra", "Centro destra", "Centro", "Destra"]
+      },
+      {
+        "text": "No, andrebbe contro gli obiettivi climatici imposti, e rischierebbe di devastare la nostra economia turistica costiera con le fuoriuscite di petrolio",
+        "axes": { "Ambiente": 25, "Eco": 30, "Identità": 35 },
+        "ideologies": ["Centro sinistra", "Sinistra"]
+      },
+      {
+        "text": "No, dobbiamo vietare immediatamente ogni estrazione di combustibili fossili e trattare la crisi climatica come un'emergenza bellica, anche se ciò richiede il razionamento dell'energia",
+        "axes": { "Ambiente": 0, "Eco": 5, "Identità": 20 },
+        "ideologies": ["Estrema sinistra"]
+      },
+      {
+        "text": "Drill baby drill, drill baby drill",
+        "axes": { "Ambiente": 100, "Eco": 100, "Identità": 100 },
+        "ideologies": ["Estrema destra", "Destra"]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe investire in programmi per ridurre lo spreco alimentare? (economia)",
+    "options": [
+      {
+        "text": "Sì, il cibo marcescente crea massicce emissioni di metano che richiedono un rigoroso intervento statale",
+        "axes": { "Ambiente": 10, "Eco": 15 },
+        "ideologies": ["Estrema sinistra", "Centro sinistra", "Sinistra", "Centro"]
+      },
+      {
+        "text": "Sì, e imporre per legge a supermercati e ristoranti di donare tutto il cibo invenduto commestibile",
+        "axes": { "Ambiente": 0, "Eco": 5 },
+        "ideologies": []
+      },
+      {
+        "text": "Sì, ma solo attraverso sgravi fiscali e educazione pubblica, evitando obblighi aziendali,",
+        "axes": { "Ambiente": 30, "Eco": 60 },
+        "ideologies": ["Centro destra", "Destra"]
+      },
+      {
+        "text": "No, le aziende hanno già un enorme incentivo economico per ridurre al minimo gli sprechi senza l'interferenza dello Stato",
+        "axes": { "Ambiente": 85, "Eco": 95 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "La sorveglianza da parte dello Stato è giustificabile per garantire la sicurezza dei cittadini?",
+    "options": [
+      {
+        "text": "Sì, lo Stato dovrebbe poter sorvegliare liberamente i cittadini per prevenire e contrastare qualsiasi forma di criminalità.",
+        "axes": { "Autorità": 85 },
+        "ideologies": ["Destra"]
+      },
+      {
+        "text": "Sì, ma solo se esiste una minaccia concreta alla sicurezza pubblica, e previa autorizzazione delle autorità giudiziarie.",
+        "axes": { "Autorità": 55 },
+        "ideologies": ["Centro", "Centro destra"]
+      },
+      {
+        "text": "Sì, lo Stato deve poter vedere e sentire tutto, entrare nelle case dei cittadini e intervenire alla minima sovversione. Ci serve un grande fratello!",
+        "axes": { "Autorità": 100 },
+        "ideologies": ["Estrema destra"]
+      },
+      {
+        "text": "No, la sorveglianza di massa viola il diritto alla privacy.",
+        "axes": { "Autorità": 10 },
+        "ideologies": ["Sinistra", "Centro sinistra"]
+      },
+      {
+        "text": "No, lo Stato non ha il diritto di sorvegliare i cittadini, anche se per motivi di sicurezza.",
+        "axes": { "Autorità": 0 },
+        "ideologies": ["Estrema sinistra"]
+      }
+    ]
+  },
+  {
+    "question": "L'intelligenza artificiale e le grandi piattaforme tecnologiche devono essere fortemente regolamentate, anche se questo rallenta l'innovazione? (economia, autorità)",
+    "options": [
+      {
+        "text": "Sì, l’AI e le grandi piattaforme sono da considerare dei settore chiave per lo Stato, per cui esse devono sottostare al suo volere.",
+        "axes": { "Autorità": 100, "Eco": 0 },
+        "ideologies": ["Estrema sinistra", "Estrema destra"]
+      },
+      {
+        "text": "Sì, esse devono essere sottoposte a regole severe per tutelare i cittadini, i lavoratori e la concorrenza.",
+        "axes": { "Autorità": 70, "Eco": 20 },
+        "ideologies": ["Sinistra", "Centro sinistra", "Centro destra"]
+      },
+      {
+        "text": "Solo leggermente, altrimenti si rischia di ostacolare lo sviluppo tecnologico.",
+        "axes": { "Autorità": 50, "Eco": 50 },
+        "ideologies": ["Centro"]
+      },
+      {
+        "text": "No, un'eccessiva regolamentazione rischia di frenare l'innovazione e danneggiare la competitività delle imprese.",
+        "axes": { "Autorità": 20, "Eco": 80 },
+        "ideologies": ["Destra"]
+      },
+      {
+        "text": "No, il settore tecnologico deve essere lasciato libero di innovare: tutte queste regolamentazioni dei burocrati europei ci stanno lasciando indietro rispetto alla Cina e agli USA.",
+        "axes": { "Autorità": 0, "Eco": 100 },
+        "ideologies": ["Destra"]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe vietare per legge ai minori di 16 anni l’uso delle piattaforme di social media? (anche società)",
+    "options": [
+      {
+        "text": "No, gli obblighi di verifica dell'età distruggono l'anonimato online: non è possibile che debba caricare la carta d’identità ogni volta che voglio farmi una sega.",
+        "axes": { "Autorità": 0, "Società": 20 },
+        "ideologies": []
+      },
+      {
+        "text": "No, si regolamentino le aziende tecnologiche per creare algoritmi più sicuri invece di esiliare gli adolescenti dalla piazza pubblica digitale",
+        "axes": { "Autorità": 30, "Società": 15 },
+        "ideologies": ["Sinistra", "Centro sinistra"]
+      },
+      {
+        "text": "No, che siano i genitori ha controllare l’accesso dei figli, non lo Stato",
+        "axes": { "Autorità": 10, "Società": 65 },
+        "ideologies": ["Destra regionalista", "Centro destra"]
+      },
+      {
+        "text": "No, i giovani emarginati e LGBTQ+ si affidano a queste comunità online per sopravvivere e trovare supporto",
+        "axes": { "Autorità": 20, "Società": 0 },
+        "ideologies": ["Estrema sinistra", "Sinistra"]
+      },
+      {
+        "text": "Sì, le piattaforme sono progettate come fentanyl digitale e alimentano una crisi di salute mentale giovanile",
+        "axes": { "Autorità": 85, "Società": 80 },
+        "ideologies": ["Destra nazionalista", "Estrema destra"]
+      },
+      {
+        "text": "Sì",
+        "axes": { "Autorità": 60, "Società": 60 },
+        "ideologies": ["Centro"]
+      }
+    ]
+  },
+  {
+    "question": "Ogni cittadino di 18 anni dovrebbe essere obbligato a prestare almeno un anno di servizio militare? (autorità, identità, società, PE)",
+    "options": [
+      {
+        "text": "No, il servizio dovrebbe essere una scelta invece che un obbligo",
+        "axes": { "Autorità": 0, "Identità": 20, "Società": 40, "PE": 10 },
+        "ideologies": ["Estrema sinistra", "Sinistra", "Centro sinistra", "Centro", "Centro destra"]
+      },
+      {
+        "text": "Si",
+        "axes": { "Autorità": 80, "Identità": 80, "Società": 70, "PE": 70 },
+        "ideologies": ["Destra nazionalista"]
+      },
+      {
+        "text": "Sì, ma solo per chi inizia ad avere precedenti penali",
+        "axes": { "Autorità": 90, "Identità": 35, "Società": 80, "PE": 40 },
+        "ideologies": ["Destra regionalista"]
+      },
+      {
+        "text": "Sì, ogni uomo italiano dovrebbe prestare servizio per la propria patria, pena la morte.",
+        "axes": { "Autorità": 100, "Identità": 100, "Società": 100, "PE": 100 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe sciogliere forzatamente le organizzazioni politiche che usano simboli fascisti o fanno il saluto romano? (autorità, società)",
+    "options": [
+      {
+        "text": "Sì, tolleranza zero contro i fasci.",
+        "axes": { "Autorità": 75, "Società": 0 },
+        "ideologies": ["Sinistra"]
+      },
+      {
+        "text": "Sì, la Costituzione vieta esplicitamente la ricostituzione del partito fascista.",
+        "axes": { "Autorità": 60, "Società": 10 },
+        "ideologies": ["Centro sinistra", "Estrema sinistra", "Centro", "Centro destra"]
+      },
+      {
+        "text": "No, a meno che non commettano violenze, la libertà di parola deve essere assoluta.",
+        "axes": { "Autorità": 15, "Società": 70 },
+        "ideologies": ["Destra", "Estrema destra"]
+      },
+      {
+        "text": "No, lasciateci in pace zecche schifose",
+        "axes": { "Autorità": 0, "Società": 100 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe regolamentare i siti di social media, come mezzo per prevenire fake news e disinformazione? (autorità, anche società)",
+    "options": [
+      {
+        "text": "Sì, ci sono troppe fake news e troppa disinformazione sui social media",
+        "axes": { "Autorità": 75, "Società": 50 },
+        "ideologies": ["Centro", "Centro destra", "Centro sinistra", "Estrema sinistra", "Sinistra"]
+      },
+      {
+        "text": "Sì, le aziende di social media sono politicamente di parte e devono essere regolate",
+        "axes": { "Autorità": 80, "Società": 70 },
+        "ideologies": ["Destra"]
+      },
+      {
+        "text": "No, le aziende di social media sono private e non dovrebbero essere regolate dal governo",
+        "axes": { "Autorità": 20, "Società": 60 },
+        "ideologies": []
+      },
+      {
+        "text": "No, altrimenti come raccogliamo voti",
+        "axes": { "Autorità": 0, "Società": 100 },
+        "ideologies": ["Destra", "Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "Dovrebbe essere permesso ai docenti di disciplinare fisicamente gli studenti? (autorità, società)",
+    "options": [
+      {
+        "text": "Sì, picchiare e schernire i bambini che disubbidiscono, o quelli che manifestano comportamenti che deviano dalle normalità (fanno i frocetti)",
+        "axes": { "Autorità": 100, "Società": 100 },
+        "ideologies": ["Estrema destra"]
+      },
+      {
+        "text": "Sì, solo in rari casi",
+        "axes": { "Autorità": 70, "Società": 70 },
+        "ideologies": []
+      },
+      {
+        "text": "No, mai.",
+        "axes": { "Autorità": 0, "Società": 0 },
+        "ideologies": ["Centro sinistra", "Centro", "Destra", "Centro destra", "Sinistra", "Estrema sinistra"]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe vietare agli studenti l'uso degli smartphone durante l'orario scolastico? (autorità, società)",
+    "options": [
+      {
+        "text": "Sì, ma con eccezioni per compiti educativi approvati dall'insegnante",
+        "axes": { "Autorità": 70, "Società": 60 },
+        "ideologies": ["Destra nazionalista", "Estrema sinistra"]
+      },
+      {
+        "text": "No, insegniamo la disciplina digitale invece della confisca",
+        "axes": { "Autorità": 30, "Società": 20 },
+        "ideologies": ["Sinistra", "Centro sinistra", "Centro"]
+      },
+      {
+        "text": "No, vietare lo strumento principale del mondo moderno è una fantasia retrograda",
+        "axes": { "Autorità": 10, "Società": 10 },
+        "ideologies": []
+      },
+      {
+        "text": "Sì, sono armi di distrazione di massa che distruggono la salute mentale",
+        "axes": { "Autorità": 85, "Società": 90 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "L'Italia dovrebbe uscire dall'Unione Europea? (identità nazionale)",
+    "options": [
+      {
+        "text": "No",
+        "axes": { "Identità": 20, "PE": 10 },
+        "ideologies": ["Sinistra", "Estrema sinistra", "Centro sinistra", "Centro"]
+      },
+      {
+        "text": "No, ma rinegoziare i limiti all'immigrazione e i termini dei nostri contributi monetari",
+        "axes": { "Identità": 60, "PE": 40 },
+        "ideologies": ["Destra", "Centro destra"]
+      },
+      {
+        "text": "Si, dobbiamo uscire da questa banda di frocetti che parlano e non fanno nulla di concreto, se non tarparci le ali con i loro provvedimenti.",
+        "axes": { "Identità": 90, "PE": 70 },
+        "ideologies": ["Estrema destra"]
+      },
+      {
+        "text": "Sì, l’unica Unione in cui l’Italia dovrebbe stare è quella con la Germania e il Giappone.",
+        "axes": { "Identità": 100, "PE": 100 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
+    "question": "L'Italia dovrebbe fornire forniture militari e finanziamenti all'Ucraina? (identità) (PE)",
+    "options": [
+      {
+        "text": "Sì, ma con una rigorosa rendicontazione.",
+        "axes": { "Identità": 65, "PE": 80 },
+        "ideologies": ["Sinistra"]
+      },
+      {
+        "text": "Solo fornendo aiuti umanitari",
+        "axes": { "Identità": 45, "PE": 30 },
+        "ideologies": ["Centro", "Centro destra", "Sinistra"]
+      },
+      {
+        "text": "Sì",
+        "axes": { "Identità": 30, "PE": 70 },
+        "ideologies": ["Centro sinistra"]
+      },
+      {
+        "text": "No, non possiamo permetterci di dare risorse militari in questo momento",
+        "axes": { "Identità": 70, "PE": 20 },
+        "ideologies": ["Estrema destra"]
+      },
+      {
+        "text": "No, non dovremmo coinvolgerci in questo conflitto",
+        "axes": { "Identità": 80, "PE": 0 },
+        "ideologies": ["Destra", "Estrema sinistra"]
+      }
+    ]
+  },
+  {
+    "question": "Sostieni una soluzione a due stati per il conflitto israelo-palestinese? (identità) (PE)",
+    "options": [
+      {
+        "text": "No, eliminare Israele e ridare tutto ai Palestinesi",
+        "axes": { "Identità": 10, "PE": 90 },
+        "ideologies": ["Estrema sinistra"]
+      },
+      {
+        "text": "No, la Palestina non deve più esistere, dare tutto in mano ad Israele",
+        "axes": { "Identità": 10, "PE": 90 },
+        "ideologies": []
+      },
+      {
+        "text": "Sì",
+        "axes": { "Identità": 80, "PE": 20 },
+        "ideologies": ["Sinistra", "Centro sinistra", "Centro", "Destra", "Centro destra"]
+      },
+      {
+        "text": "No, non finché i palestinesi non dimostreranno la loro volontà di una pacifica convivenza",
+        "axes": { "Identità": 85, "PE": 75 },
+        "ideologies": ["Estrema destra"]
+      }
+    ]
+  },
+  {
     "question": "Dovrebbe essere illegale bruciare la bandiera italiana? (identità, autorità)",
     "options": [
       {
@@ -1493,4 +1932,699 @@ const quizData = [
         "axes": {
           "Giustizia": 20
         },
-        "ideologies
+        "ideologies": []
+      },
+      {
+        "text": "Sì",
+        "axes": {
+          "Giustizia": 0
+        },
+        "ideologies": [
+          "Sinistra",
+          "Centro sinistra",
+          "Estrema sinistra",
+          "Centro"
+        ]
+      },
+      {
+        "text": "No, solo in aggiunta all'incarcerazione, non come alternativa",
+        "axes": {
+          "Giustizia": 75
+        },
+        "ideologies": []
+      },
+      {
+        "text": "No, è uno spreco di tempo cercare di riabilitare alcuni criminali.",
+        "axes": {
+          "Giustizia": 90
+        },
+        "ideologies": [
+          "Destra",
+          "Centro destra",
+          "Estrema destra"
+        ]
+      },
+      {
+        "text": "No, l’unica alternativa al carcere è la morte",
+        "axes": {
+          "Giustizia": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Gli immigrati dovrebbero essere deportati se commettono un reato grave?",
+    "options": [
+      {
+        "text": "Sì, ma dopo aver scontato la loro pena",
+        "axes": {
+          "Giustizia": 65,
+          "Identità": 75
+        },
+        "ideologies": [
+          "Centro",
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "No",
+        "axes": {
+          "Giustizia": 15,
+          "Identità": 20
+        },
+        "ideologies": [
+          "Sinistra",
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Si, subito",
+        "axes": {
+          "Giustizia": 85,
+          "Identità": 90
+        },
+        "ideologies": [
+          "Destra",
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Gli immigrati dovrebbero essere deportati punto: RE-MI-GRA-ZiO-NE",
+        "axes": {
+          "Giustizia": 100,
+          "Identità": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Le navi delle ONG dovrebbero essere multate o bloccate se portano migranti salvati nei porti italiani?",
+    "options": [
+      {
+        "text": "No, stanno colmando un vuoto mortale lasciato dall'inazione del governo.",
+        "axes": {
+          "Identità": 10,
+          "Autorità": 15,
+          "PE": 5
+        },
+        "ideologies": [
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "No, salvare vite in mare è un dovere obbligatorio.",
+        "axes": {
+          "Identità": 5,
+          "Autorità": 10,
+          "PE": 0
+        },
+        "ideologies": [
+          "Sinistra",
+          "Centro",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "No, bombardate.",
+        "axes": {
+          "Identità": 100,
+          "Autorità": 100,
+          "PE": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      },
+      {
+        "text": "Sì, sono \"taxi del mare\" che favoriscono il traffico illegale di esseri umani.",
+        "axes": {
+          "Identità": 85,
+          "Autorità": 75,
+          "PE": 70
+        },
+        "ideologies": [
+          "Destra regionalista"
+        ]
+      },
+      {
+        "text": "Sì, il controllo dei confini spetta allo Stato.",
+        "axes": {
+          "Identità": 90,
+          "Autorità": 90,
+          "PE": 75
+        },
+        "ideologies": [
+          "Destra nazionalista",
+          "Centro destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Un bambino nato in Italia da genitori stranieri dovrebbe diventare automaticamente cittadino italiano?",
+    "options": [
+      {
+        "text": "Sì, chiunque nasca sul suolo italiano dovrebbe essere automaticamente cittadino",
+        "axes": {
+          "Identità": 0,
+          "Società": 0
+        },
+        "ideologies": [
+          "Sinistra",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "Sì, ma solo se i genitori risiedono legalmente in Italia da diversi anni",
+        "axes": {
+          "Identità": 35,
+          "Società": 30
+        },
+        "ideologies": [
+          "Centro sinistra",
+          "Centro"
+        ]
+      },
+      {
+        "text": "No, la cittadinanza va guadagnata per discendenza o istruzione, non solo per geografia",
+        "axes": {
+          "Identità": 80,
+          "Società": 70
+        },
+        "ideologies": [
+          "Centro",
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "No, manteniamo il sistema dello Ius Sanguinis per proteggere l’identità nazionale",
+        "axes": {
+          "Identità": 90,
+          "Società": 90
+        },
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "No, un figlio di genitori stranieri non sarà mai italiano, come non lo saranno mai i genitori",
+        "axes": {
+          "Identità": 100,
+          "Società": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Il governo dovrebbe bloccare la costruzione di nuove moschee per preservare il paesaggio culturale esistente?",
+    "options": [
+      {
+        "text": "Sì, ma solo se gli Imam non sono registrati dallo Stato e i sermoni non sono predicati in italiano",
+        "axes": {
+          "Religione": 60,
+          "Identità": 75,
+          "Autorità": 75
+        },
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Sì, l'Italia è una nazione storicamente cristiana e dobbiamo preservare il nostro paesaggio culturale tradizionale",
+        "axes": {
+          "Religione": 100,
+          "Identità": 100,
+          "Autorità": 85
+        },
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "No, a meno che i fondi non provengano da paesi che vietano la costruzione di chiese cristiane",
+        "axes": {
+          "Religione": 50,
+          "Identità": 60,
+          "Autorità": 45
+        },
+        "ideologies": []
+      },
+      {
+        "text": "No, vietare i siti ufficiali costringe i musulmani in \"moschee garage\" non regolamentate che favoriscono la radicalizzazione",
+        "axes": {
+          "Religione": 10,
+          "Identità": 15,
+          "Autorità": 15
+        },
+        "ideologies": [
+          "Centro",
+          "Sinistra",
+          "Centro sinistra",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "Ovviamente, già è tanto che li lasciamo pregare a casa loro, ci manca soltanto creare delle moschee giganti con gli autoparlanti da cui quei terroristi possano latrare a tutte le ore del giorno",
+        "axes": {
+          "Religione": 100,
+          "Identità": 100,
+          "Autorità": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Le scuole pubbliche dovrebbero poter chiudere per festività religiose non cattoliche, come la fine del Ramadan? (religione, società, identità)",
+    "options": [
+      {
+        "text": "No, il calendario scolastico deve rispettare la storia e le radici cattoliche dell'Italia, non le religioni straniere.",
+        "axes": {
+          "Religione": 90,
+          "Società": 90,
+          "Identità": 90
+        },
+        "ideologies": [
+          "Destra",
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Sì, le scuole devono avere l'autonomia di adattare gli orari alla realtà demografica dei loro studenti.",
+        "axes": {
+          "Religione": 35,
+          "Società": 25,
+          "Identità": 30
+        },
+        "ideologies": [
+          "Centro sinistra",
+          "Centro",
+          "Sinistra",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "Sì, riconoscere le diverse fedi è essenziale per il successo dell'integrazione delle comunità di immigrati.",
+        "axes": {
+          "Religione": 20,
+          "Società": 10,
+          "Identità": 15
+        },
+        "ideologies": [
+          "Sinistra",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "No, sarebbe un primo passo verso la sottomissione e colonizzazione culturale già in atto in Italia a cause delle politiche troppo accondiscendi dei sinistri",
+        "axes": {
+          "Religione": 100,
+          "Società": 100,
+          "Identità": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Ci dovrebbe essere un limite agli stranieri in Italia?",
+    "options": [
+      {
+        "text": "No, i nostri confini dovrebbero essere aperti.",
+        "axes": {
+          "Identità": 0,
+          "Eco": 30,
+          "Società": 0
+        },
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "No, accogliere chi fugge da guerre, persecuzioni e condizioni di grave pericolo, senza quote rigide",
+        "axes": {
+          "Identità": 10,
+          "Eco": 20,
+          "Società": 5
+        },
+        "ideologies": [
+          "Sinistra",
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Sì, la massiccia immigrazione sta cancellando la cultura e l'identità occidentale",
+        "axes": {
+          "Identità": 75,
+          "Eco": 55,
+          "Società": 65
+        },
+        "ideologies": [
+          "Destra",
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Sì, ma le quote dovrebbero essere stabilite in base alle necessità del mercato del lavoro e alla disponibilità di servizi pubblici",
+        "axes": {
+          "Identità": 50,
+          "Eco": 70,
+          "Società": 40
+        },
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "Sì, non si vogliono integrare e puzzano: RE-MI-GRA-ZIO-NE",
+        "axes": {
+          "Identità": 100,
+          "Eco": 80,
+          "Società": 100
+        },
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Sei soddisfatto del governo attuale?",
+    "options": [
+      {
+        "text": "Sì",
+        "axes": {},
+        "ideologies": [
+          "Centro destra",
+          "Destra"
+        ]
+      },
+      {
+        "text": "No",
+        "axes": {},
+        "ideologies": [
+          "Centro sinistra",
+          "Sinistra",
+          "Estrema sinistra",
+          "Centro",
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Quale festa si celebra il 25 aprile?",
+    "options": [
+      {
+        "text": "Festa della Liberazione dal nazifascismo",
+        "axes": {},
+        "ideologies": [
+          "Centro",
+          "Centro destra",
+          "Centro sinistra",
+          "Sinistra",
+          "Destra",
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "San Marco",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Con quale politico andresti a cena?",
+    "options": [
+      {
+        "text": "Generale",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      },
+      {
+        "text": "Il capitano",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "Tajans",
+        "axes": {},
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Kraken",
+        "axes": {},
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "Elena",
+        "axes": {},
+        "ideologies": [
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Gentilezza",
+        "axes": {},
+        "ideologies": [
+          "Sinistra"
+        ]
+      },
+      {
+        "text": "Una zecca",
+        "axes": {},
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Da quale nazione ti faresti governare più volentieri?",
+    "options": [
+      {
+        "text": "Nessuna nazione può governare l’Italia, non finché ci sono io a difenderla",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      },
+      {
+        "text": "USA e Israele",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "USA",
+        "axes": {},
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Svizzera",
+        "axes": {},
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "L’Unione Europea unita",
+        "axes": {},
+        "ideologies": [
+          "Centro sinistra",
+          "Sinistra"
+        ]
+      },
+      {
+        "text": "Cina",
+        "axes": {},
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Come saluteresti un gruppo di persone?",
+    "options": [
+      {
+        "text": "Buongiornə a tuttə",
+        "axes": {},
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "Buongiorn* a tutt*",
+        "axes": {},
+        "ideologies": [
+          "Sinistra",
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Buongiorno a tutte e tutti",
+        "axes": {},
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "Buongiorno a tutti",
+        "axes": {},
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "A banda de froci",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "Camerati buongiorno",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Qual è il tuo personaggio del Signore degli Anelli preferito?",
+    "options": [
+      {
+        "text": "Samvise Gamgee",
+        "axes": {},
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "Frodo Baggins",
+        "axes": {},
+        "ideologies": [
+          "Sinistra"
+        ]
+      },
+      {
+        "text": "Faramir",
+        "axes": {},
+        "ideologies": [
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Bilbo Baggins",
+        "axes": {},
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "Théoden",
+        "axes": {},
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "Aragorn",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "Saruman",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  },
+  {
+    "question": "Qual è il tuo film preferito?",
+    "options": [
+      {
+        "text": "La corazzata Potëmkin",
+        "axes": {},
+        "ideologies": [
+          "Estrema sinistra"
+        ]
+      },
+      {
+        "text": "La battaglia di Algeri",
+        "axes": {},
+        "ideologies": [
+          "Sinistra"
+        ]
+      },
+      {
+        "text": "L’armata Brancaleone",
+        "axes": {},
+        "ideologies": [
+          "Centro sinistra"
+        ]
+      },
+      {
+        "text": "Qualcuno volò sul nido del cuculo",
+        "axes": {},
+        "ideologies": [
+          "Centro"
+        ]
+      },
+      {
+        "text": "Forrest Gump",
+        "axes": {},
+        "ideologies": [
+          "Centro destra"
+        ]
+      },
+      {
+        "text": "American Sniper",
+        "axes": {},
+        "ideologies": [
+          "Destra"
+        ]
+      },
+      {
+        "text": "Citizen Vigilante",
+        "axes": {},
+        "ideologies": [
+          "Estrema destra"
+        ]
+      }
+    ]
+  }
+];
