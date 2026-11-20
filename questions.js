@@ -114,32 +114,7 @@ const quizData = [
       }
     ]
   },
-  {
-    "question": "Il governo dovrebbe imporre il passaggio alla settimana lavorativa di quattro giorni?",
-    "options": [
-      {
-        "text": "Sì, e obbligare le aziende a pagare lo stesso salario di 40 ore per 32.",
-        "axes": { "Eco": 10 },
-        "ideologies": ["Estrema sinistra", "Sinistra"]
-      },
-      {
-        "text": "Sì, gli studi dimostrano che riduce il burnout e aumenta la produttività.",
-        "axes": { "Eco": 25 },
-        "ideologies": ["Centro sinistra"]
-      },
-      {
-        "text": "No, il libero mercato dovrebbe dettare gli orari, poiché un obbligo rovinerebbe le piccole imprese.",
-        "axes": { "Eco": 50 },
-        "ideologies": ["Centro"]
-      },
-      {
-        "text": "No, perdere un’intera giornata di lavoro distruggerà la produttività nazionale e annienterà la nostra competitività economica globale.",
-        "axes": { "Eco": 80 },
-        "ideologies": ["Destra", "Centro destra", "Estrema destra"]
-      }
-    ]
-  },
-  {
+    {
     "question": "I datori di lavoro dovrebbero essere obbligati a pagare uomini e donne lo stesso stipendio per lo stesso lavoro? (società)",
     "options": [
       {
