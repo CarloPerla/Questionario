@@ -2331,37 +2331,33 @@ const quizData = [
     "options": [
       {
         "text": "Abubakar",
-        "axes": {},
+        "axes": { "Società": 0 },
         "ideologies": []
       },
       {
         "text": "Hassan",
-        "axes": {},
+        "axes": { "Società": 0 },
         "ideologies": []
       },
       {
         "text": "Giulio",
-        "axes": {},
+        "axes": { "Società": 70 },
         "ideologies": []
       },
       {
         "text": "Gianni",
-        "axes": {},
-        "ideologies": [
-          "Destra"
-        ]
+        "axes": { "Società": 90 },
+        "ideologies": ["Destra"]
       },
       {
         "text": "Vincenzo",
-        "axes": {},
+        "axes": { "Società": 70 },
         "ideologies": []
       },
       {
         "text": "Franco",
-        "axes": {},
-        "ideologies": [
-          "Estrema destra"
-        ]
+        "axes": { "Società": 90 },
+        "ideologies": ["Estrema destra"]
       }
     ]
   },
