@@ -233,63 +233,98 @@
     const ideologyProfiles = {
         "Estrema sinistra": {
             party: "Potere al Popolo",
-            nation: "Cuba",
+            nation: "Cina comunista",
             character: "Che Guevara"
         },
         "Sinistra": {
             party: "Alleanza Verdi e Sinistra",
-            nation: "Spagna",
-            character: "Enrico Berlinguer"
+            nation: "Cile di Salvador Allende",
+            character: "Robin Hood"
         },
         "Centro sinistra": {
             party: "Partito Democratico",
-            nation: "Svezia",
+            nation: "Danimarca",
             character: "Jacques Delors"
         },
         "Centro": {
-            party: "+Europa / Azione",
+            party: "Italia Viva",
             nation: "Svizzera",
-            character: "Mario Draghi"
+            character: "Don Camillo"
         },
         "Centro destra": {
             party: "Forza Italia",
-            nation: "Stati Uniti",
-            character: "Alcide De Gasperi"
-        },
-        "Destra": {
-            party: "Fratelli d'Italia",
-            nation: "Regno Unito",
-            character: "Margaret Thatcher"
+            nation: "Italia del Dopoguerra",
+            character: "Ned Flanders"
         },
         "Destra regionalista": {
             party: "Lega",
-            nation: "Austria",
+            nation: "Veneto Stato",
             character: "Umberto Bossi"
         },
         "Destra nazionalista": {
-            party: "Movimento Nazionale / Sovranista",
-            nation: "Ungheria",
+            party: "Fratelli d'Italia",
+            nation: "Italia attuale",
             character: "Viktor Orbán"
         },
         "Estrema destra": {
-            party: "CasaPound",
-            nation: "Giappone imperiale",
-            character: "Yukio Mishima"
+            party: "Futuro Nazionale",
+            nation: "Italia fascista",
+            character: "Generale Vannacci"
         }
     };
 
     const ALL_IDEOLOGIES = Object.keys(ideologyProfiles);
 
+    const AXES_ORDER = [
+        "Economia",
+        "Società",
+        "Autorità",
+        "Identità",
+        "Politica Estera",
+        "Ambiente",
+        "Religione",
+        "Giustizia"
+    ];
+
     const axisDescriptions = {
-        Eco: ["Statalismo / Socialismo", "Libero Mercato / Capitalismo"],
+        Economia: ["Socialismo", "Capitalismo"],
         Società: ["Progressismo", "Tradizionalismo"],
         Autorità: ["Libertarismo", "Autoritarismo"],
         Identità: ["Internazionalismo", "Nazionalismo"],
-        PE: ["Pacifismo / Isolazionismo", "Interventismo / Militarismo"],
+        "Politica Estera": ["Pacifismo", "Interventismo"],
         Ambiente: ["Ecologismo", "Produttivismo"],
         Religione: ["Laicismo", "Confessionalismo"],
-        Giustizia: ["Garantismo / Riabilitazione", "Giustizialismo / Punitivo"]
+        Giustizia: ["Riabilitazione", "Punitivo"]
     };
+
+    function normalizeAxisKey(rawKey) {
+        const k = rawKey.trim().toLowerCase();
+        if (k === "eco" || k === "economia") return "Economia";
+        if (k === "società" || k === "societa" || k === "sociale") return "Società";
+        if (k === "autorità" || k === "autorita") return "Autorità";
+        if (k === "identità" || k === "identita") return "Identità";
+        if (k === "pe" || k === "politica estera" || k === "politica_estera") return "Politica Estera";
+        if (k === "ambiente") return "Ambiente";
+        if (k === "religione") return "Religione";
+        if (k === "giustizia") return "Giustizia";
+        return null;
+    }
+
+    function addIdeologyScore(ideologyPoints, rawIdeology) {
+        const key = rawIdeology.trim().toLowerCase();
+        if (!key || key === "nessuno" || key === "nessuna") return;
+
+        if (key === "destra") {
+            ideologyPoints["Destra regionalista"] = (ideologyPoints["Destra regionalista"] || 0) + 1;
+            ideologyPoints["Destra nazionalista"] = (ideologyPoints["Destra nazionalista"] || 0) + 1;
+            return;
+        }
+
+        const matched = ALL_IDEOLOGIES.find(i => i.toLowerCase() === key);
+        if (matched) {
+            ideologyPoints[matched] = (ideologyPoints[matched] || 0) + 1;
+        }
+    }
 
     let activeQuestions = [];
     let userAnswers = [];
@@ -367,8 +402,13 @@
     }
 
     function computeScores() {
-        const axisTotals = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
-        const axisCounts = { Eco: 0, Società: 0, Autorità: 0, Identità: 0, PE: 0, Ambiente: 0, Religione: 0, Giustizia: 0 };
+        const axisTotals = {};
+        const axisCounts = {};
+        AXES_ORDER.forEach(ax => {
+            axisTotals[ax] = 0;
+            axisCounts[ax] = 0;
+        });
+
         const ideologyPoints = {};
         ALL_IDEOLOGIES.forEach(ideo => {
             ideologyPoints[ideo] = 0;
@@ -377,8 +417,9 @@
         userAnswers.forEach(opt => {
             if (!opt) return;
             if (opt.axes) {
-                for (const [axis, val] of Object.entries(opt.axes)) {
-                    if (axisTotals.hasOwnProperty(axis)) {
+                for (const [rawAxis, val] of Object.entries(opt.axes)) {
+                    const axis = normalizeAxisKey(rawAxis);
+                    if (axis && typeof val === "number" && !Number.isNaN(val)) {
                         axisTotals[axis] += val;
                         axisCounts[axis] += 1;
                     }
@@ -386,10 +427,7 @@
             }
             if (opt.ideologies) {
                 opt.ideologies.forEach(ideo => {
-                    const key = ideo.trim();
-                    if (key && key.toLowerCase() !== 'nessuno' && key.toLowerCase() !== 'nessuna') {
-                        ideologyPoints[key] = (ideologyPoints[key] || 0) + 1;
-                    }
+                    addIdeologyScore(ideologyPoints, ideo);
                 });
             }
         });
@@ -445,8 +483,10 @@
 
         const axesContainer = document.getElementById('axes-container');
         axesContainer.innerHTML = '';
-        for (const [axis, total] of Object.entries(axisTotals)) {
-            const avg = axisCounts[axis] > 0 ? Math.round(total / axisCounts[axis]) : 50;
+        AXES_ORDER.forEach(axis => {
+            const total = axisTotals[axis];
+            const count = axisCounts[axis];
+            const avg = count > 0 ? Math.round(total / count) : 50;
             const [leftLabel, rightLabel] = axisDescriptions[axis];
             axesContainer.innerHTML += `
                 <div class="axis-row">
@@ -460,7 +500,7 @@
                     </div>
                 </div>
             `;
-        }
+        });
     }
 </script>
 </body>
