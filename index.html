@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test di Orientamento Politico</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: var(--card);
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        h1 { margin-top: 0; font-size: 1.8rem; }
+        p { line-height: 1.6; color: var(--muted); }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        button {
+            padding: 14px 20px;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: white;
+            color: var(--text);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        button:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .hidden { display: none; }
+        .result-box {
+            background: #f1f5f9;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid var(--primary);
+        }
+        .ideology-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- SCHERMATA INIZIALE -->
+    <div id="start-screen">
+        <h1>Bussola Politica</h1>
+        <p>Rispondi alle seguenti affermazioni per scoprire quale corrente politica si avvicina di più alle tue idee su economia e società.</p>
+        <button class="btn-primary" onclick="startQuiz()">Inizia il Questionario</button>
+    </div>
+
+    <!-- SCHERMATA DOMANDE -->
+    <div id="quiz-screen" class="hidden">
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        <div id="question-counter" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 8px;"></div>
+        <div class="question-text" id="question-text"></div>
+        <div class="options">
+            <button onclick="answer(2)">Molto d'accordo</button>
+            <button onclick="answer(1)">Abbastanza d'accordo</button>
+            <button onclick="answer(0)">Neutrale / Indeciso</button>
+            <button onclick="answer(-1)">Abbastanza in disaccordo</button>
+            <button onclick="answer(-2)">Molto in disaccordo</button>
+        </div>
+    </div>
+
+    <!-- SCHERMATA RISULTATI -->
+    <div id="result-screen" class="hidden">
+        <h1>Il tuo risultato</h1>
+        <div class="result-box">
+            <div class="ideology-title" id="ideology-name"></div>
+            <p id="ideology-desc" style="color: var(--text); margin: 0;"></p>
+        </div>
+        <p id="scores-detail" style="font-size: 0.9rem;"></p>
+        <button class="btn-primary" onclick="restartQuiz()">Ripeti il test</button>
+    </div>
+</div>
+
+<script>
+    // 1. ELENCO DELLE DOMANDE
+    // axis: 'econ' (positivo = destra/libero mercato, negativo = sinistra/intervento statale)
+    // axis: 'soc'  (positivo = progressista, negativo = conservatore)
+    // effect: 1 (essere d'accordo aumenta l'asse), -1 (essere d'accordo diminuisce l'asse)
+    const questions = [
+        {
+            text: "Lo Stato dovrebbe ridurre le tasse sulle imprese e limitare il proprio intervento nell'economia.",
+            axis: "econ",
+            effect: 1
+        },
+        {
+            text: "I servizi essenziali come sanità, istruzione e trasporti dovrebbero essere gestiti principalmente dal settore pubblico.",
+            axis: "econ",
+            effect: -1
+        },
+        {
+            text: "I diritti civili, inclusi il matrimonio egualitario e l'adozione per tutte le coppie, devono essere pienamente garantiti.",
+            axis: "soc",
+            effect: 1
+        },
+        {
+            text: "Le tradizioni culturali e i valori familiari tradizionali sono il fondamento più importante di una società stabile.",
+            axis: "soc",
+            effect: -1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let scores = { econ: 0, soc: 0 };
+
+    function startQuiz() {
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const q = questions[currentQuestion];
+        document.getElementById('question-counter').innerText = `Domanda ${currentQuestion + 1} di ${questions.length}`;
+        document.getElementById('question-text').innerText = q.text;
+        const progressPercent = ((currentQuestion) / questions.length) * 100;
+        document.getElementById('progress').style.width = progressPercent + "%";
+    }
+
+    function answer(weight) {
+        const q = questions[currentQuestion];
+        scores[q.axis] += weight * q.effect;
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            showQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    // 2. LOGICA DI CLASSIFICAZIONE IDEOLOGICA
+    function showResults() {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.remove('hidden');
+
+        let title = "";
+        let desc = "";
+
+        if (Math.abs(scores.econ) <= 1 && Math.abs(scores.soc) <= 1) {
+            title = "Centrismo / Moderato";
+            desc = "Hai una visione equilibrata e pragmatica, che evita gli estremi e valuta le proposte caso per caso combinando libertà economica e attenzione sociale.";
+        } else if (scores.econ <= 0 && scores.soc > 0) {
+            title = "Socialdemocrazia / Progressismo";
+            desc = "Sostieni la giustizia sociale, un forte stato sociale per ridurre le disuguaglianze economiche e l'espansione dei diritti civili e individuali.";
+        } else if (scores.econ > 0 && scores.soc > 0) {
+            title = "Liberalismo / Libertarismo";
+            desc = "Dai priorità alla libertà individuale in ogni ambito: sei favorevole al libero mercato, alla riduzione della spesa pubblica e alle libertà civili personali.";
+        } else if (scores.econ > 0 && scores.soc <= 0) {
+            title = "Conservatorismo Liberale";
+            desc = "Combini il sostegno all'iniziativa privata e alla riduzione fiscale con la difesa dei valori tradizionali, dell'ordine e della stabilità istituzionale.";
+        } else {
+            title = "Conservatorismo Sociale / Comunitarismo";
+            desc = "Ritieni che lo Stato debba proteggere i cittadini e l'economia nazionale, mantenendo al contempo un forte legame con le tradizioni e la coesione sociale.";
+        }
+
+        document.getElementById('ideology-name').innerText = title;
+        document.getElementById('ideology-desc').innerText = desc;
+        document.getElementById('scores-detail').innerText = 
+            `Punteggio Economico: ${scores.econ} (Sinistra < 0 > Destra) | Punteggio Sociale: ${scores.soc} (Conservatore < 0 > Progressista)`;
+    }
+
+    function restartQuiz() {
+        currentQuestion = 0;
+        scores = { econ: 0, soc: 0 };
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('start-screen').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
