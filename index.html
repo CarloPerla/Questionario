@@ -238,6 +238,22 @@
             color: var(--muted);
             font-size: 0.74rem;
         }
+        .octagon-card {
+            background: #0f172a;
+            border: 1px solid #263349;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .octagon-legend {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 8px;
+            text-align: center;
+        }
         .axis-row { margin-bottom: 14px; }
         .axis-labels { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; color: var(--muted); }
         .axis-bar-bg { width: 100%; height: 12px; background: #334155; border-radius: 6px; position: relative; overflow: hidden; }
@@ -311,6 +327,14 @@
 
         <h3>Classifica Completa delle Ideologie</h3>
         <div id="ranking-container"></div>
+
+        <h3>Ottagono degli 8 Assi</h3>
+        <div class="octagon-card">
+            <div id="octagon-container" style="width: 100%; max-width: 520px;"></div>
+            <div class="octagon-legend">
+                Punta esterna = <strong>0</strong> &nbsp;·&nbsp; Anello intermedio = <strong>50</strong> &nbsp;·&nbsp; Centro = <strong>100</strong>
+            </div>
+        </div>
 
         <h3>Dettaglio sugli 8 Assi (0 - 100)</h3>
         <div id="axes-container"></div>
@@ -392,8 +416,6 @@
         }
     };
 
-    // Mappa automatica parole chiave -> immagine per Signore degli Anelli,
-    // domanda "Con chi vorresti andare a cena?" e altri personaggi citati nelle domande/risposte
     const entityImages = [
         // Il Signore degli Anelli
         { keywords: ["aragorn"], image: "images/lotr-aragorn.jpg" },
@@ -569,7 +591,6 @@
         document.getElementById('progress').style.width = `${(currentIdx / activeQuestions.length) * 100}%`;
         document.getElementById('back-btn').disabled = currentIdx === 0;
 
-        // Immagine eventuale associata alla domanda
         const qImgEl = document.getElementById('question-img');
         const qImgSrc = findEntityImage(q.question, q.image);
         if (qImgSrc) {
@@ -673,6 +694,92 @@
         }
     }
 
+    function renderOctagonChart(axisAverages) {
+        const container = document.getElementById('octagon-container');
+        if (!container) return;
+
+        const size = 500;
+        const cx = size / 2;
+        const cy = size / 2;
+        const maxRadius = 155;
+        const labelRadius = maxRadius + 32;
+        const numAxes = AXES_ORDER.length;
+
+        const getPoint = (idx, radius) => {
+            const angle = -Math.PI / 2 + (idx * 2 * Math.PI) / numAxes;
+            return {
+                x: cx + radius * Math.cos(angle),
+                y: cy + radius * Math.sin(angle),
+                angle
+            };
+        };
+
+        // Ottagoni concentrici di guida (punta = 0, centro = 100)
+        const levels = [0, 25, 50, 75];
+        let gridSvg = '';
+        levels.forEach(lvl => {
+            const r = maxRadius * ((100 - lvl) / 100);
+            const pts = AXES_ORDER.map((_, i) => {
+                const p = getPoint(i, r);
+                return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+            }).join(' ');
+            const isOuter = lvl === 0;
+            const isMid = lvl === 50;
+            gridSvg += `<polygon points="${pts}" fill="none" stroke="${isOuter ? '#475569' : '#334155'}" stroke-width="${isOuter ? 2 : 1}" ${isMid ? 'stroke-dasharray="4 4"' : ''} />`;
+        });
+
+        // Raggi dal centro alle 8 punte + etichette
+        let spokesSvg = '';
+        let labelsSvg = '';
+        const valuePoints = [];
+        let dotsSvg = '';
+
+        AXES_ORDER.forEach((axis, i) => {
+            const val = Math.max(0, Math.min(100, axisAverages[axis]));
+            const outerP = getPoint(i, maxRadius);
+            spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${outerP.x.toFixed(1)}" y2="${outerP.y.toFixed(1)}" stroke="#334155" stroke-width="1" />`;
+
+            // Punta = 0 (raggio maxRadius), Centro = 100 (raggio 0)
+            const rVal = maxRadius * ((100 - val) / 100);
+            const valP = getPoint(i, rVal);
+            valuePoints.push(`${valP.x.toFixed(1)},${valP.y.toFixed(1)}`);
+
+            dotsSvg += `<circle cx="${valP.x.toFixed(1)}" cy="${valP.y.toFixed(1)}" r="5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5" />`;
+
+            const lblP = getPoint(i, labelRadius);
+            const cos = Math.cos(lblP.angle);
+            const sin = Math.sin(lblP.angle);
+            let anchor = 'middle';
+            if (cos > 0.25) anchor = 'start';
+            else if (cos < -0.25) anchor = 'end';
+
+            const yOffset = sin > 0.5 ? 12 : (sin < -0.5 ? -6 : 4);
+            labelsSvg += `
+                <text x="${lblP.x.toFixed(1)}" y="${(lblP.y + yOffset).toFixed(1)}"
+                      text-anchor="${anchor}" fill="#f8fafc" font-size="12" font-weight="600">
+                    ${axis}
+                    <tspan x="${lblP.x.toFixed(1)}" dy="14" fill="#60a5fa" font-size="11" font-weight="700">${val}</tspan>
+                </text>
+            `;
+        });
+
+        container.innerHTML = `
+            <svg viewBox="0 0 ${size} ${size}" width="100%" height="auto" style="overflow: visible;">
+                ${gridSvg}
+                ${spokesSvg}
+                <polygon points="${valuePoints.join(' ')}"
+                         fill="rgba(37, 99, 235, 0.32)"
+                         stroke="#60a5fa"
+                         stroke-width="2.5"
+                         stroke-linejoin="round" />
+                ${dotsSvg}
+                <circle cx="${cx}" cy="${cy}" r="3.5" fill="#94a3b8" />
+                <text x="${cx + 7}" y="${cy + 4}" fill="#94a3b8" font-size="10">100</text>
+                ${labelsSvg}
+            </svg>
+        `;
+    }
+
     function showResults() {
         document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
@@ -747,12 +854,15 @@
             `;
         });
 
+        const axisAverages = {};
         const axesContainer = document.getElementById('axes-container');
         axesContainer.innerHTML = '';
         AXES_ORDER.forEach(axis => {
             const total = axisTotals[axis];
             const count = axisCounts[axis];
             const avg = count > 0 ? Math.round(total / count) : 50;
+            axisAverages[axis] = avg;
+
             const [leftLabel, rightLabel] = axisDescriptions[axis];
             axesContainer.innerHTML += `
                 <div class="axis-row">
@@ -767,6 +877,8 @@
                 </div>
             `;
         });
+
+        renderOctagonChart(axisAverages);
     }
 </script>
 </body>
