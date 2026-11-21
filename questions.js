@@ -158,19 +158,14 @@ const quizData = [
         "ideologies": ["Sinistra", "Centro sinistra"]
       },
       {
-        "text": "No, il datore di lavoro dovrebbe poter decidere quale modalità sia più efficace.",
+        "text": "No, il datore di lavoro dovrebbe poter decidere quale modalità sia più efficace",
         "axes": { "Eco": 50, "Società": 60, "Autorità": 50 },
-        "ideologies": ["Centro"]
+        "ideologies": ["Centro", "Centro destra", "Destra"]
       },
       {
         "text": "No, il lavoro in presenza favorisce la collaborazione, la disciplina e il controllo dei dipendenti.",
         "axes": { "Eco": 65, "Società": 80, "Autorità": 85 },
         "ideologies": ["Estrema destra"]
-      },
-      {
-        "text": "No, le aziende devono avere piena libertà di stabilire dove e come i propri dipendenti lavorano.",
-        "axes": { "Eco": 80, "Società": 70, "Autorità": 65 },
-        "ideologies": ["Centro destra", "Destra"]
       }
     ]
   },
@@ -221,11 +216,6 @@ const quizData = [
         "text": "Sì",
         "axes": { "Eco": 30, "Società": 40 },
         "ideologies": ["Sinistra", "Centro sinistra", "Centro", "Centro destra", "Destra"]
-      },
-      {
-        "text": "No, ma dovrebbe riformare le leggi urbanistiche per aumentare l’offerta di alloggi",
-        "axes": { "Eco": 70, "Società": 50 },
-        "ideologies": []
       },
       {
         "text": "No, se non ti puoi permettere una casa non è un problema dello Stato",
