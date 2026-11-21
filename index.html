@@ -488,31 +488,15 @@
             margin-top: 8px;
             text-align: center;
         }
-        .axis-row {
-            margin-bottom: 16px;
-        }
-        .axis-top-labels {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 10px;
-            font-size: 0.84rem;
-            margin-bottom: 6px;
-        }
-        .axis-side-left {
-            color: #93c5fd;
-            font-weight: 600;
-            text-align: left;
+       .axis-row {
+            margin-bottom: 18px;
         }
         .axis-title {
+            text-align: center;
+            font-size: 0.92rem;
             font-weight: 700;
             color: var(--text);
-            text-align: center;
-        }
-        .axis-side-right {
-            color: #fca5a5;
-            font-weight: 600;
-            text-align: right;
+            margin-bottom: 6px;
         }
         .axis-bipolar-wrap {
             display: flex;
@@ -520,9 +504,9 @@
             gap: 10px;
         }
         .axis-pole-label {
-            width: 112px;
+            width: 115px;
             flex-shrink: 0;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 600;
             line-height: 1.2;
         }
@@ -536,7 +520,7 @@
         }
         .axis-split-bar {
             flex-grow: 1;
-            height: 12px;
+            height: 28px;
             border-radius: 6px;
             overflow: hidden;
             display: flex;
@@ -545,20 +529,35 @@
         }
         .axis-part-left {
             background: #2563eb;
-            height: 100%;
+            color: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
             transition: width 0.5s ease;
         }
         .axis-part-right {
             background: #dc2626;
-            height: 100%;
+            color: #fef2f2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
             transition: width 0.5s ease;
         }
         @media (max-width: 600px) {
             .axis-pole-label {
-                width: 78px;
-                font-size: 0.72rem;
+                width: 82px;
+                font-size: 0.74rem;
             }
         }
+        
          </style>
 </head>
 <body>
@@ -1584,19 +1583,17 @@
             axisAverages[axis] = avg;
 
             const [leftLabel, rightLabel] = axisDescriptions[axis];
+            const leftText = leftPct >= 14 ? `${leftPct}%` : '';
+            const rightText = avg >= 14 ? `${avg}%` : '';
 
             axesContainer.innerHTML += `
                 <div class="axis-row">
-                    <div class="axis-top-labels">
-                        <span class="axis-side-left">${leftPct}%</span>
-                        <span class="axis-title">${axis}</span>
-                        <span class="axis-side-right">${avg}%</span>
-                    </div>
+                    <div class="axis-title">${axis}</div>
                     <div class="axis-bipolar-wrap">
                         <div class="axis-pole-label left">${leftLabel}</div>
                         <div class="axis-split-bar" title="${leftLabel}: ${leftPct}% — ${rightLabel}: ${avg}%">
-                            <div class="axis-part-left" style="width: ${leftPct}%;"></div>
-                            <div class="axis-part-right" style="width: ${avg}%;"></div>
+                            <div class="axis-part-left" style="width: ${leftPct}%;">${leftText}</div>
+                            <div class="axis-part-right" style="width: ${avg}%;">${rightText}</div>
                         </div>
                         <div class="axis-pole-label right">${rightLabel}</div>
                     </div>
