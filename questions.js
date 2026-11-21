@@ -253,11 +253,6 @@ const quizData = [
     "question": "L'Italia dovrebbe aumentare o diminuire la spesa militare?",
     "options": [
       {
-        "text": "Né l'uno né l'altro, sono soddisfatto dell'attuale livello di spesa",
-        "axes": { "Eco": 50, "Identità": 50, "PE": 50 },
-        "ideologies": []
-      },
-      {
         "text": "Aumentare aumentare aumentare, più soldi, più armi, viva la guerra!!",
         "axes": { "Eco": 100, "Identità": 100, "PE": 100 },
         "ideologies": ["Estrema destra"]
@@ -618,7 +613,7 @@ const quizData = [
         "ideologies": ["Centro"]
       },
       {
-        "text": "Certo che possono: madri e padri dovrebbero condividere equamente le responsabilità familiari e professionali.",
+        "text": "Sì, madri e padri dovrebbero condividere equamente le responsabilità familiari e professionali.",
         "axes": { "Società": 10 },
         "ideologies": ["Sinistra", "Centro sinistra", "Estrema sinistra"]
       }
@@ -720,36 +715,6 @@ const quizData = [
       {
         "text": "Dovrebbero essere vietato l’aborto, ed essere infissa la pena di morte per qualsiasi donna lo faccia",
         "axes": { "Società": 100, "Religione": 90 },
-        "ideologies": ["Estrema destra"]
-      }
-    ]
-  },
-  {
-    "question": "Si dovrebbe imporre un tetto massimo alla percentuale di studenti non madrelingua in ogni classe scolastica?",
-    "options": [
-      {
-        "text": "No, escludere i bambini in base alla provenienza è segregazionista e viola il loro diritto all'istruzione",
-        "axes": { "Società": 0, "Identità": 5 },
-        "ideologies": ["Estrema sinistra", "Sinistra", "Centro sinistra"]
-      },
-      {
-        "text": "No, ma assumere più insegnanti di sostegno linguistico",
-        "axes": { "Società": 15, "Identità": 15 },
-        "ideologies": ["Centro", "Sinistra"]
-      },
-      {
-        "text": "Sì, prevenire le \"classi ghetto\" garantisce una migliore integrazione nella cultura locale",
-        "axes": { "Società": 55, "Identità": 70 },
-        "ideologies": ["Centro sinistra", "Destra nazionalista"]
-      },
-      {
-        "text": "Sì, le barriere linguistiche rallentano il programma e danneggiano la qualità dell'istruzione per tutti",
-        "axes": { "Società": 65, "Identità": 75 },
-        "ideologies": ["Destra regionalista"]
-      },
-      {
-        "text": "Si, con un tetto di 0 studenti non madrelingue per classe: tutti gli stranieri in scuole per loro, non a contatto con la nostra gioventù pulita.",
-        "axes": { "Società": 100, "Identità": 100 },
         "ideologies": ["Estrema destra"]
       }
     ]
@@ -1016,26 +981,6 @@ const quizData = [
         "text": "No, mai.",
         "axes": { "Autorità": 0, "Società": 0 },
         "ideologies": ["Centro sinistra", "Centro", "Destra", "Centro destra", "Sinistra", "Estrema sinistra"]
-      }
-    ]
-  },
-  {
-    "question": "Il governo dovrebbe vietare agli studenti l'uso degli smartphone durante l'orario scolastico?",
-    "options": [
-      {
-        "text": "Sì, ma con eccezioni per compiti educativi approvati dall'insegnante",
-        "axes": { "Autorità": 70, "Società": 60 },
-        "ideologies": ["Destra nazionalista", "Estrema sinistra"]
-      },
-      {
-        "text": "No, insegniamo la disciplina digitale invece della confisca",
-        "axes": { "Autorità": 30, "Società": 20 },
-        "ideologies": ["Sinistra", "Centro sinistra", "Centro"]
-      },
-      {
-        "text": "Sì, sono armi di distrazione di massa che distruggono la salute mentale",
-        "axes": { "Autorità": 85, "Società": 90 },
-        "ideologies": ["Estrema destra"]
       }
     ]
   },
@@ -2375,7 +2320,7 @@ const quizData = [
         ]
     },
   {
-    "question": "Qual è il tuo personaggio del Signore degli Anelli preferito?",
+    "question": "Quale tra questi è il tuo personaggio preferito del Signore degli Anelli ?",
     "options": [
       {
         "text": "Samvise Gamgee",
