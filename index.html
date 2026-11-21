@@ -456,23 +456,24 @@
 
             <label>Scegli il tuo Avatar</label>
             <div class="avatar-picker" id="avatar-picker">
-    <button type="button" class="avatar-choice active" data-avatar="images/avatars/avatar-1.jpg" onclick="selectPresetAvatar('images/avatars/avatar-1.jpg', this)">
-        <img src="images/avatars/avatar-1.jpg" alt="Avatar 1" onerror="this.style.display='none'">
-    </button>
-    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-2.jpg" onclick="selectPresetAvatar('images/avatars/avatar-2.jpg', this)">
-        <img src="images/avatars/avatar-2.jpg" alt="Avatar 2" onerror="this.style.display='none'">
-    </button>
-    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.png" onclick="selectPresetAvatar('images/avatars/avatar-3.png', this)">
-        <img src="images/avatars/avatar-3.png" alt="Avatar 3" onerror="this.style.display='none'">
-    </button>
-    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.png" onclick="selectPresetAvatar('images/avatars/avatar-4.png', this)">
-        <img src="images/avatars/avatar-4.png" alt="Avatar 4" onerror="this.style.display='none'">
-    </button>
-    <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
-    <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
-    <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
-</div>
-            
+                <button type="button" class="avatar-choice active" data-avatar="images/avatars/avatar-1.jpg" onclick="selectPresetAvatar('images/avatars/avatar-1.jpg', this)">
+                    <img src="images/avatars/avatar-1.jpg" alt="Avatar 1" onerror="this.style.display='none'">
+                </button>
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-2.jpg" onclick="selectPresetAvatar('images/avatars/avatar-2.jpg', this)">
+                    <img src="images/avatars/avatar-2.jpg" alt="Avatar 2" onerror="this.style.display='none'">
+                </button>
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.png" onclick="selectPresetAvatar('images/avatars/avatar-3.png', this)">
+                    <img src="images/avatars/avatar-3.png" alt="Avatar 3" onerror="this.style.display='none'">
+                </button>
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.png" onclick="selectPresetAvatar('images/avatars/avatar-4.png', this)">
+                    <img src="images/avatars/avatar-4.png" alt="Avatar 4" onerror="this.style.display='none'">
+                </button>
+                <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
+                <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
+                <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+            </div>
+        </div>
+
         <div class="btn-group">
             <button class="btn-primary" onclick="startQuiz('full')">Test Completo (Tutte le domande)</button>
             <button class="btn-secondary" onclick="startQuiz('quick', 15)">Modalità Rapida (15 domande)</button>
@@ -581,9 +582,9 @@
     const SPECIAL_GOALS_KEY = "quiz_special_goals_v1";
 
     let userProfile = {
-    name: "",
-    avatar: "images/avatars/avatar-1.jpg",
-    isImage: true
+        name: "",
+        avatar: "images/avatars/avatar-1.jpg",
+        isImage: true
     };
 
     function loadUserProfile() {
@@ -601,13 +602,17 @@
                 }
             }
         } catch (e) {}
-        
+
         const nameInput = document.getElementById("username-input");
         if (nameInput) nameInput.value = userProfile.name;
 
         document.querySelectorAll(".avatar-choice").forEach(btn => btn.classList.remove("active"));
 
-        if (userProfile.isImage && userProfile.avatar) {
+        const matchingBtn = Array.from(document.querySelectorAll(".avatar-choice[data-avatar]"))
+            .find(btn => btn.dataset.avatar === userProfile.avatar);
+        if (matchingBtn) {
+            matchingBtn.classList.add("active");
+        } else if (userProfile.isImage && userProfile.avatar) {
             const previewBtn = document.getElementById("custom-avatar-preview");
             if (previewBtn) {
                 previewBtn.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
@@ -615,21 +620,10 @@
                 previewBtn.classList.add("active");
             }
         } else {
-            const matchingBtn = Array.from(document.querySelectorAll(".avatar-choice[data-avatar]"))
-    .find(btn => btn.dataset.avatar === userProfile.avatar);
-if (matchingBtn) {
-    matchingBtn.classList.add("active");
-} else if (userProfile.isImage && userProfile.avatar) {
-    const previewBtn = document.getElementById("custom-avatar-preview");
-    if (previewBtn) {
-        previewBtn.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
-        previewBtn.classList.remove("hidden");
-        previewBtn.classList.add("active");
+            const firstBtn = document.querySelector(".avatar-choice[data-avatar]");
+            if (firstBtn) firstBtn.classList.add("active");
+        }
     }
-} else {
-    const firstBtn = document.querySelector(".avatar-choice[data-avatar]");
-    if (firstBtn) firstBtn.classList.add("active");
-}
 
     function saveUserProfile() {
         const nameInput = document.getElementById("username-input");
@@ -642,13 +636,13 @@ if (matchingBtn) {
     }
 
     function selectPresetAvatar(avatarSrc, btnEl) {
-    userProfile.avatar = avatarSrc;
-    userProfile.isImage = true;
-    document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
-    if (btnEl) btnEl.classList.add("active");
-    saveUserProfile();
-}
- 
+        userProfile.avatar = avatarSrc;
+        userProfile.isImage = true;
+        document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
+        if (btnEl) btnEl.classList.add("active");
+        saveUserProfile();
+    }
+
     function selectCustomAvatar() {
         const previewBtn = document.getElementById("custom-avatar-preview");
         const img = previewBtn ? previewBtn.querySelector("img") : null;
@@ -698,20 +692,20 @@ if (matchingBtn) {
     }
 
     function renderResultUserBanner() {
-    const nameEl = document.getElementById("result-user-name");
-    const avatarEl = document.getElementById("result-user-avatar");
-    if (nameEl) {
-        nameEl.innerText = userProfile.name ? userProfile.name : "Utente Ospite";
-    }
-    if (avatarEl) {
-        if (userProfile.avatar) {
-            avatarEl.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar" onerror="this.style.display='none'">`;
-        } else {
-            avatarEl.innerHTML = "";
+        const nameEl = document.getElementById("result-user-name");
+        const avatarEl = document.getElementById("result-user-avatar");
+        if (nameEl) {
+            nameEl.innerText = userProfile.name ? userProfile.name : "Utente Ospite";
+        }
+        if (avatarEl) {
+            if (userProfile.avatar) {
+                avatarEl.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar" onerror="this.style.display='none'">`;
+            } else {
+                avatarEl.innerHTML = "";
+            }
         }
     }
-}
- 
+
     function backToHome() {
         document.getElementById("result-screen").classList.add("hidden");
         document.getElementById("quiz-screen").classList.add("hidden");
@@ -787,7 +781,6 @@ if (matchingBtn) {
     };
 
     const entityImages = [
-        // Il Signore degli Anelli
         { keywords: ["aragorn"], image: "images/lotr-aragorn.jpg" },
         { keywords: ["gandalf"], image: "images/lotr-gandalf.jpg" },
         { keywords: ["frodo"], image: "images/lotr-frodo.jpg" },
@@ -797,7 +790,6 @@ if (matchingBtn) {
         { keywords: ["theoden", "théoden"], image: "images/lotr-theoden.jpg" },
         { keywords: ["bilbo"], image: "images/lotr-bilbo.jpg" },
 
-        // Personaggi "A cena con..." / Politici / Storici
         { keywords: ["elena"], image: "images/cena-schlein.jpg" },
         { keywords: ["il capitano"], image: "images/cena-capitano.jpg" },
         { keywords: ["kraken"], image: "images/cena-kraken.jpg" },
@@ -806,7 +798,6 @@ if (matchingBtn) {
         { keywords: ["zecca"], image: "images/cena-comunista.jpg" },
         { keywords: ["tajans"], image: "images/cena-tajans.jpg" },
 
-        // Italiani
         { keywords: ["abubakar"], image: "images/nero-italiano.jpg" },
         { keywords: ["hassan"], image: "images/paki.jpg" },
         { keywords: ["giulio"], image: "images/italiano.jpg" },
