@@ -295,31 +295,6 @@ const quizData = [
     ]
   },
   {
-    "question": "Il governo dovrebbe mettere all'asta le concessioni balneari?",
-    "options": [
-      {
-        "text": "Sì, ma risarcite gli attuali gestori per i loro investimenti",
-        "axes": { "Eco": 55, "Identità": 45 },
-        "ideologies": ["Sinistra"]
-      },
-      {
-        "text": "Sì, bisogna porre fine ai monopoli e aprire il mercato alla libera concorrenza",
-        "axes": { "Eco": 90, "Identità": 40 },
-        "ideologies": ["Centro sinistra", "Estrema sinistra", "Centro"]
-      },
-      {
-        "text": "No, proteggiamo le imprese familiari dalle multinazionali straniere",
-        "axes": { "Eco": 35, "Identità": 85 },
-        "ideologies": ["Destra", "Centro destra"]
-      },
-      {
-        "text": "No, le spiagge italiane sono patrimonio culturale, lasciamole al gestore balneare che ha a cuore la salvaguardia della spiaggia, e sicuramente no il profitto.",
-        "axes": { "Eco": 20, "Identità": 75 },
-        "ideologies": ["Estrema destra"]
-      }
-    ]
-  },
-  {
     "question": "Le tasse universitarie nelle università pubbliche dovrebbero essere gratuite?",
     "options": [
       {
