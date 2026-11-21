@@ -581,22 +581,21 @@
     const SPECIAL_GOALS_KEY = "quiz_special_goals_v1";
 
     let userProfile = {
-        name: "",
-        avatar: "👤",
-        isImage: false
+    name: "",
+    avatar: "images/avatars/avatar-1.jpg",
+    isImage: true
     };
-
+    
     function loadUserProfile() {
         try {
             const raw = localStorage.getItem(USER_PROFILE_KEY);
             if (raw) {
-                const parsed = JSON.parse(raw);
-                if (parsed && typeof parsed === "object") {
-                    userProfile = {
-                        name: parsed.name || "",
-                        avatar: parsed.avatar || "👤",
-                        isImage: Boolean(parsed.isImage)
-                    };
+                const isImg = Boolean(parsed.isImage) || (typeof parsed.avatar === "string" && (parsed.avatar.includes("/") || parsed.avatar.startsWith("data:image")));
+userProfile = {
+    name: parsed.name || "",
+    avatar: parsed.avatar || "images/avatars/avatar-1.jpg",
+    isImage: isImg
+};
                 }
             }
         } catch (e) {}
@@ -615,15 +614,20 @@
             }
         } else {
             const matchingBtn = Array.from(document.querySelectorAll(".avatar-choice[data-avatar]"))
-                .find(btn => btn.dataset.avatar === userProfile.avatar);
-            if (matchingBtn) {
-                matchingBtn.classList.add("active");
-            } else {
-                const defaultBtn = document.querySelector('.avatar-choice[data-avatar="👤"]');
-                if (defaultBtn) defaultBtn.classList.add("active");
-            }
-        }
+    .find(btn => btn.dataset.avatar === userProfile.avatar);
+if (matchingBtn) {
+    matchingBtn.classList.add("active");
+} else if (userProfile.isImage && userProfile.avatar) {
+    const previewBtn = document.getElementById("custom-avatar-preview");
+    if (previewBtn) {
+        previewBtn.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
+        previewBtn.classList.remove("hidden");
+        previewBtn.classList.add("active");
     }
+} else {
+    const firstBtn = document.querySelector(".avatar-choice[data-avatar]");
+    if (firstBtn) firstBtn.classList.add("active");
+}
 
     function saveUserProfile() {
         const nameInput = document.getElementById("username-input");
@@ -635,14 +639,14 @@
         } catch (e) {}
     }
 
-    function selectPresetAvatar(emoji, btnEl) {
-        userProfile.avatar = emoji;
-        userProfile.isImage = false;
-        document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
-        if (btnEl) btnEl.classList.add("active");
-        saveUserProfile();
-    }
-
+    function selectPresetAvatar(avatarSrc, btnEl) {
+    userProfile.avatar = avatarSrc;
+    userProfile.isImage = true;
+    document.querySelectorAll(".avatar-choice").forEach(b => b.classList.remove("active"));
+    if (btnEl) btnEl.classList.add("active");
+    saveUserProfile();
+}
+ 
     function selectCustomAvatar() {
         const previewBtn = document.getElementById("custom-avatar-preview");
         const img = previewBtn ? previewBtn.querySelector("img") : null;
@@ -692,20 +696,20 @@
     }
 
     function renderResultUserBanner() {
-        const nameEl = document.getElementById("result-user-name");
-        const avatarEl = document.getElementById("result-user-avatar");
-        if (nameEl) {
-            nameEl.innerText = userProfile.name ? userProfile.name : "Utente Ospite";
-        }
-        if (avatarEl) {
-            if (userProfile.isImage && userProfile.avatar) {
-                avatarEl.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar">`;
-            } else {
-                avatarEl.innerText = userProfile.avatar || "👤";
-            }
+    const nameEl = document.getElementById("result-user-name");
+    const avatarEl = document.getElementById("result-user-avatar");
+    if (nameEl) {
+        nameEl.innerText = userProfile.name ? userProfile.name : "Utente Ospite";
+    }
+    if (avatarEl) {
+        if (userProfile.avatar) {
+            avatarEl.innerHTML = `<img src="${userProfile.avatar}" alt="Avatar" onerror="this.style.display='none'">`;
+        } else {
+            avatarEl.innerHTML = "";
         }
     }
-
+}
+ 
     function backToHome() {
         document.getElementById("result-screen").classList.add("hidden");
         document.getElementById("quiz-screen").classList.add("hidden");
