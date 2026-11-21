@@ -456,19 +456,23 @@
 
             <label>Scegli il tuo Avatar</label>
             <div class="avatar-picker" id="avatar-picker">
-                <button type="button" class="avatar-choice active" data-avatar="👤" onclick="selectPresetAvatar('👤', this)">👤</button>
-                <button type="button" class="avatar-choice" data-avatar="🦊" onclick="selectPresetAvatar('🦊', this)">🦊</button>
-                <button type="button" class="avatar-choice" data-avatar="🦁" onclick="selectPresetAvatar('🦁', this)">🦁</button>
-                <button type="button" class="avatar-choice" data-avatar="🦉" onclick="selectPresetAvatar('🦉', this)">🦉</button>
-                <button type="button" class="avatar-choice" data-avatar="🐺" onclick="selectPresetAvatar('🐺', this)">🐺</button>
-                <button type="button" class="avatar-choice" data-avatar="🏛️" onclick="selectPresetAvatar('🏛️', this)">🏛️</button>
-                <button type="button" class="avatar-choice" data-avatar="⚖️" onclick="selectPresetAvatar('⚖️', this)">⚖️</button>
-                <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
-                <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
-                <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
-            </div>
-        </div>
-
+    <button type="button" class="avatar-choice active" data-avatar="images/avatars/avatar-1.jpg" onclick="selectPresetAvatar('images/avatars/avatar-1.jpg', this)">
+        <img src="images/avatars/avatar-1.jpg" alt="Avatar 1" onerror="this.style.display='none'">
+    </button>
+    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-2.jpg" onclick="selectPresetAvatar('images/avatars/avatar-2.jpg', this)">
+        <img src="images/avatars/avatar-2.jpg" alt="Avatar 2" onerror="this.style.display='none'">
+    </button>
+    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.png" onclick="selectPresetAvatar('images/avatars/avatar-3.png', this)">
+        <img src="images/avatars/avatar-3.png" alt="Avatar 3" onerror="this.style.display='none'">
+    </button>
+    <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.png" onclick="selectPresetAvatar('images/avatars/avatar-4.png', this)">
+        <img src="images/avatars/avatar-4.png" alt="Avatar 4" onerror="this.style.display='none'">
+    </button>
+    <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
+    <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
+    <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+</div>
+            
         <div class="btn-group">
             <button class="btn-primary" onclick="startQuiz('full')">Test Completo (Tutte le domande)</button>
             <button class="btn-secondary" onclick="startQuiz('quick', 15)">Modalità Rapida (15 domande)</button>
