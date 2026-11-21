@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test di Orientamento Politico</title>
+    <title>Compleanno Davide</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -514,14 +514,14 @@
 
     <!-- Schermata Profilo e Avvio Test -->
     <div id="start-screen" class="hidden">
-        <h1>Test di Orientamento Politico</h1>
+        <h1>Compleanno Davide</h1>
         <p style="color: var(--muted); line-height: 1.6;">
             Rispondi alle domande per calcolare il tuo posizionamento politico e scoprire le ideologie più affini alle tue risposte.
         </p>
 
         <div class="profile-setup">
             <label for="username-input">Il tuo Nome Utente</label>
-            <input type="text" id="username-input" class="profile-input" placeholder="Es. Marco, Giulia, Cittadino..." maxlength="30" oninput="saveUserProfile()">
+            <input type="text" id="username-input" class="profile-input" placeholder="Es. Pankratz, Sgrodez, Davide..." maxlength="30" oninput="saveUserProfile()">
 
             <label>Scegli il tuo Avatar</label>
             <div class="avatar-picker" id="avatar-picker">
@@ -531,11 +531,11 @@
                 <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-2.jpg" onclick="selectPresetAvatar('images/avatars/avatar-2.jpg', this)">
                     <img src="images/avatars/avatar-2.jpg" alt="Avatar 2" onerror="this.style.display='none'">
                 </button>
-                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.png" onclick="selectPresetAvatar('images/avatars/avatar-3.png', this)">
-                    <img src="images/avatars/avatar-3.png" alt="Avatar 3" onerror="this.style.display='none'">
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.jpg" onclick="selectPresetAvatar('images/avatars/avatar-3.jpg', this)">
+                    <img src="images/avatars/avatar-3.jpg" alt="Avatar 3" onerror="this.style.display='none'">
                 </button>
-                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.png" onclick="selectPresetAvatar('images/avatars/avatar-4.png', this)">
-                    <img src="images/avatars/avatar-4.png" alt="Avatar 4" onerror="this.style.display='none'">
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.jpg" onclick="selectPresetAvatar('images/avatars/avatar-4.jpg', this)">
+                    <img src="images/avatars/avatar-4.jpg" alt="Avatar 4" onerror="this.style.display='none'">
                 </button>
                 <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
                 <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
