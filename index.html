@@ -585,21 +585,23 @@
     avatar: "images/avatars/avatar-1.jpg",
     isImage: true
     };
-    
+
     function loadUserProfile() {
         try {
             const raw = localStorage.getItem(USER_PROFILE_KEY);
             if (raw) {
-                const isImg = Boolean(parsed.isImage) || (typeof parsed.avatar === "string" && (parsed.avatar.includes("/") || parsed.avatar.startsWith("data:image")));
-userProfile = {
-    name: parsed.name || "",
-    avatar: parsed.avatar || "images/avatars/avatar-1.jpg",
-    isImage: isImg
-};
+                const parsed = JSON.parse(raw);
+                if (parsed && typeof parsed === "object") {
+                    const isImg = Boolean(parsed.isImage) || (typeof parsed.avatar === "string" && (parsed.avatar.includes("/") || parsed.avatar.startsWith("data:image")));
+                    userProfile = {
+                        name: parsed.name || "",
+                        avatar: parsed.avatar || "images/avatars/avatar-1.jpg",
+                        isImage: isImg
+                    };
                 }
             }
         } catch (e) {}
-
+        
         const nameInput = document.getElementById("username-input");
         if (nameInput) nameInput.value = userProfile.name;
 
