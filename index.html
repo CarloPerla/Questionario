@@ -444,6 +444,21 @@
 <body>
 
 <div class="container">
+    <div id="welcome-screen">
+        <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #60a5fa; font-weight: 700; margin-bottom: 10px;">
+            Benvenuto
+        </div>
+        <h1>Test di Orientamento Politico</h1>
+        <p style="color: var(--muted); line-height: 1.65; margin-bottom: 24px;">
+            Scopri la tua bussola politica attraverso domande su economia, società, diritti, esteri e molto altro.
+            Potrai personalizzare il tuo profilo, sbloccare obiettivi e riprendere il test quando vuoi.
+        </p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="enterStartScreen()">Entra nel test →</button>
+        </div>
+    </div>
+
+    <div id="start-screen" class="hidden">
     <div id="start-screen">
         <h1>Test di Orientamento Politico</h1>
         <p style="color: var(--muted); line-height: 1.6;">
@@ -710,6 +725,14 @@
         document.getElementById("result-screen").classList.add("hidden");
         document.getElementById("quiz-screen").classList.add("hidden");
         document.getElementById("start-screen").classList.remove("hidden");
+        checkSavedProgress();
+    }
+
+    function enterStartScreen() {
+        const welcomeEl = document.getElementById("welcome-screen");
+        const startEl = document.getElementById("start-screen");
+        if (welcomeEl) welcomeEl.classList.add("hidden");
+        if (startEl) startEl.classList.remove("hidden");
         checkSavedProgress();
     }
 
