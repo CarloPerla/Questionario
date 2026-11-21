@@ -253,7 +253,7 @@ const quizData = [
         "ideologies": ["Destra", "Centro", "Centro destra"]
       },
       {
-        "text": "No, un disoccupato e solo uno scansafatiche, se vuole un reddito, che vada a lavorare.",
+        "text": "No, un disoccupato è solo uno scansafatiche, se vuole un reddito, che vada a lavorare.",
         "axes": { "Eco": 95, "Società": 100 },
         "ideologies": ["Estrema destra"]
       }
@@ -543,7 +543,7 @@ const quizData = [
         "ideologies": ["Estrema destra"]
       },
       {
-        "text": "No, e vietare tutti i trattamenti di transizione di genere, e incarcerare tutti i transessuali… e anche i froci visto che ci siamo.",
+        "text": "No, e vietare tutti i trattamenti di transizione di genere, e incarcerare tutti i transessuali… e perché no, anche i froci",
         "axes": { "Società": 100, "Autorità": 100 },
         "ideologies": ["Estrema destra"]
       }
@@ -783,7 +783,7 @@ const quizData = [
         "ideologies": ["Centro", "Centro destra"]
       },
       {
-        "text": "È un problema sopravvalutato ed ideologico.",
+        "text": "È un problema sopravvalutato e ideologico.",
         "axes": { "Ambiente": 90 },
         "ideologies": ["Destra nazionalista"]
       },
@@ -811,31 +811,6 @@ const quizData = [
         "text": "No, concentrarsi sulle rinnovabili (eolico/solare) come unico percorso sostenibile",
         "axes": { "Ambiente": 15, "Eco": 30, "Identità": 40 },
         "ideologies": ["Sinistra", "Centro sinistra", "Estrema sinistra"]
-      }
-    ]
-  },
-  {
-    "question": "I prodotti usa e getta (come bicchieri, piatti e posate di plastica) che contengono meno del 50% di materiale biodegradabile dovrebbero essere vietati?",
-    "options": [
-      {
-        "text": "Sì, e alzare il minimo al 75%.",
-        "axes": { "Ambiente": 0, "Eco": 10 },
-        "ideologies": ["Destra nazionalista", "Estrema sinistra", "Centro", "Sinistra"]
-      },
-      {
-        "text": "Sì, devono avere almeno il 50%.",
-        "axes": { "Ambiente": 20, "Eco": 20 },
-        "ideologies": ["Centro sinistra", "Sinistra"]
-      },
-      {
-        "text": "No, ma aumentare gli incentivi fiscali per le aziende che producono prodotti biodegradabili",
-        "axes": { "Ambiente": 40, "Eco": 50 },
-        "ideologies": ["Destra regionalista", "Centro destra"]
-      },
-      {
-        "text": "No, provocherebbe un danno economico enorme per molte aziende italiane.",
-        "axes": { "Ambiente": 90, "Eco": 90 },
-        "ideologies": ["Estrema destra"]
       }
     ]
   },
@@ -903,7 +878,7 @@ const quizData = [
     "question": "L'intelligenza artificiale e le grandi piattaforme tecnologiche devono essere fortemente regolamentate, anche se questo rallenta l'innovazione?",
     "options": [
       {
-        "text": "Sì, l’AI e le grandi piattaforme sono da considerare dei settore chiave per lo Stato, per cui esse devono sottostare al suo volere.",
+        "text": "Sì, l’AI e le grandi piattaforme vanno considerate dei settore chiave per lo Stato, per cui esse devono sottostare al suo volere.",
         "axes": { "Autorità": 100, "Eco": 0 },
         "ideologies": ["Estrema sinistra", "Estrema destra"]
       },
@@ -918,15 +893,10 @@ const quizData = [
         "ideologies": ["Centro"]
       },
       {
-        "text": "No, un'eccessiva regolamentazione rischia di frenare l'innovazione e danneggiare la competitività delle imprese.",
+        "text": "No, il settore tecnologico deve essere lasciato libero di innovare: un'eccessiva regolamentazione rischia di frenare l'innovazione e danneggiare la competitività delle imprese.",
         "axes": { "Autorità": 20, "Eco": 80 },
         "ideologies": ["Destra"]
       },
-      {
-        "text": "No, il settore tecnologico deve essere lasciato libero di innovare: tutte queste regolamentazioni dei burocrati europei ci stanno lasciando indietro rispetto alla Cina e agli USA.",
-        "axes": { "Autorità": 0, "Eco": 100 },
-        "ideologies": ["Destra"]
-      }
     ]
   },
   {
@@ -938,7 +908,7 @@ const quizData = [
         "ideologies": []
       },
       {
-        "text": "No, si regolamentino le aziende tecnologiche per creare algoritmi più sicuri invece di esiliare gli adolescenti dalla piazza pubblica digitale",
+        "text": "No, ma dovrebbe regolamentare le aziende tecnologiche per creare algoritmi più sicuri per gli adolescenti",
         "axes": { "Autorità": 30, "Società": 15 },
         "ideologies": ["Sinistra", "Centro sinistra"]
       },
@@ -1071,11 +1041,6 @@ const quizData = [
         "text": "No, insegniamo la disciplina digitale invece della confisca",
         "axes": { "Autorità": 30, "Società": 20 },
         "ideologies": ["Sinistra", "Centro sinistra", "Centro"]
-      },
-      {
-        "text": "No, vietare lo strumento principale del mondo moderno è una fantasia retrograda",
-        "axes": { "Autorità": 10, "Società": 10 },
-        "ideologies": []
       },
       {
         "text": "Sì, sono armi di distrazione di massa che distruggono la salute mentale",
@@ -1295,8 +1260,13 @@ const quizData = [
           "Eco": 70,
           "Società": 70
         },
-        "ideologies": []
-      }
+        "ideologies": [
+          "Destra regionalista",
+          "Centro destra",
+          "Centro sinistra",
+          "Estrema destra",
+          "Centro"
+          }
     ]
   },
   {
@@ -1341,14 +1311,6 @@ const quizData = [
         "ideologies": [
           "Centro"
         ]
-      },
-      {
-        "text": "Sì, e ridurre retroattivamente le pene per chi sta già scontando una condanna",
-        "axes": {
-          "Giustizia": 5,
-          "Società": 10
-        },
-        "ideologies": []
       },
       {
         "text": "No, anzi dovremmo aumentare le pene sulle droghe, sia per gli spacciatori, sia per chi le usa",
@@ -1695,7 +1657,7 @@ const quizData = [
         ]
       },
       {
-        "text": "No, il femminicidio non esiste, è solo un etichetta propagandistica e allarmistica creata dai sinistri; inoltre, se lo dovessimo istituire, dovremmo istituire anche il corrispettivo maschicidio.",
+        "text": "No, il femminicidio non esiste, è solo un etichetta propagandistica e allarmistica creata dai sinistri: e il maschicidio allora?",
         "axes": {
           "Giustizia": 20,
           "Società": 100
@@ -1889,9 +1851,8 @@ const quizData = [
           "Società": 30
         },
         "ideologies": [
-          "Centro sinistra",
-          "Centro"
-        ]
+          "Centro sinistra"
+          ]
       },
       {
         "text": "No, la cittadinanza va guadagnata per discendenza o istruzione, non solo per geografia",
@@ -1950,15 +1911,6 @@ const quizData = [
         "ideologies": [
           "Destra"
         ]
-      },
-      {
-        "text": "No, a meno che i fondi non provengano da paesi che vietano la costruzione di chiese cristiane",
-        "axes": {
-          "Religione": 50,
-          "Identità": 60,
-          "Autorità": 45
-        },
-        "ideologies": []
       },
       {
         "text": "No, vietare i siti ufficiali costringe i musulmani in \"moschee garage\" non regolamentate che favoriscono la radicalizzazione",
@@ -2327,7 +2279,7 @@ const quizData = [
       {
         "text": "Vincenzo",
         "axes": { "Società": 70 },
-        "ideologies": []
+         "ideologies": ["Centro"]
       },
       {
         "text": "Franco",
