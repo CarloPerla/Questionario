@@ -39,6 +39,59 @@
         h1 { margin-top: 0; font-size: 1.8rem; }
         h3 { margin-top: 28px; margin-bottom: 14px; font-size: 1.15rem; }
 
+        /* Schermata Introduttiva con dissolvenza e click ovunque */
+        #welcome-screen {
+            text-align: center;
+            padding: 40px 16px;
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #welcome-screen.hidden {
+            display: none;
+        }
+        .intro-step {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #60a5fa;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .intro-quote {
+            margin: 0 auto 36px;
+            max-width: 660px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+            font-weight: 800;
+            line-height: 1.22;
+            color: var(--text);
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .intro-quote.fading {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        .intro-tap-hint {
+            font-size: 0.85rem;
+            color: var(--muted);
+            animation: pulseHint 2.2s infinite ease-in-out;
+        }
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.45; }
+            50% { opacity: 0.95; }
+        }
+
         /* Profilo Utente nella schermata iniziale */
         .profile-setup {
             background: #0f172a;
@@ -444,22 +497,17 @@
 <body>
 
 <div class="container">
-    <div id="welcome-screen">
-        <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #60a5fa; font-weight: 700; margin-bottom: 10px;">
-            Benvenuto
-        </div>
-        <h1>Test di Orientamento Politico</h1>
-        <p style="color: var(--muted); line-height: 1.65; margin-bottom: 24px;">
-            Scopri la tua bussola politica attraverso domande su economia, società, diritti, esteri e molto altro.
-            Potrai personalizzare il tuo profilo, sbloccare obiettivi e riprendere il test quando vuoi.
-        </p>
-        <div class="btn-group">
-            <button class="btn-primary" onclick="enterStartScreen()">Entra nel test →</button>
-        </div>
+    <!-- Schermata Introduttiva a click ovunque -->
+    <div id="welcome-screen" onclick="advanceIntro()">
+        <div id="intro-step" class="intro-step">1 / 4</div>
+        <blockquote id="intro-quote" class="intro-quote">
+            Rispondiamo una volta per tutte
+        </blockquote>
+        <div class="intro-tap-hint">Tocca o clicca ovunque per continuare</div>
     </div>
 
+    <!-- Schermata Profilo e Avvio Test -->
     <div id="start-screen" class="hidden">
-    <div id="start-screen">
         <h1>Test di Orientamento Politico</h1>
         <p style="color: var(--muted); line-height: 1.6;">
             Rispondi alle domande per calcolare il tuo posizionamento politico e scoprire le ideologie più affini alle tue risposte.
@@ -467,7 +515,7 @@
 
         <div class="profile-setup">
             <label for="username-input">Il tuo Nome Utente</label>
-            <input type="text" id="username-input" class="profile-input" placeholder="Es. Pankratz, Sgrodez, Davide..." maxlength="30" oninput="saveUserProfile()">
+            <input type="text" id="username-input" class="profile-input" placeholder="Es. Marco, Giulia, Cittadino..." maxlength="30" oninput="saveUserProfile()">
 
             <label>Scegli il tuo Avatar</label>
             <div class="avatar-picker" id="avatar-picker">
@@ -477,11 +525,11 @@
                 <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-2.jpg" onclick="selectPresetAvatar('images/avatars/avatar-2.jpg', this)">
                     <img src="images/avatars/avatar-2.jpg" alt="Avatar 2" onerror="this.style.display='none'">
                 </button>
-                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.jpg" onclick="selectPresetAvatar('images/avatars/avatar-3.jpg', this)">
-                    <img src="images/avatars/avatar-3.jpg" alt="Avatar 3" onerror="this.style.display='none'">
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-3.png" onclick="selectPresetAvatar('images/avatars/avatar-3.png', this)">
+                    <img src="images/avatars/avatar-3.png" alt="Avatar 3" onerror="this.style.display='none'">
                 </button>
-                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.jpg" onclick="selectPresetAvatar('images/avatars/avatar-4.jpg', this)">
-                    <img src="images/avatars/avatar-4.jpg" alt="Avatar 4" onerror="this.style.display='none'">
+                <button type="button" class="avatar-choice" data-avatar="images/avatars/avatar-4.png" onclick="selectPresetAvatar('images/avatars/avatar-4.png', this)">
+                    <img src="images/avatars/avatar-4.png" alt="Avatar 4" onerror="this.style.display='none'">
                 </button>
                 <button type="button" id="custom-avatar-preview" class="avatar-choice hidden" onclick="selectCustomAvatar()"></button>
                 <button type="button" class="upload-avatar-btn" onclick="document.getElementById('avatar-upload').click()">📷 Carica foto</button>
@@ -501,6 +549,7 @@
         </div>
     </div>
 
+    <!-- Schermata Domande -->
     <div id="quiz-screen" class="hidden">
         <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
         <div id="counter" style="font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;"></div>
@@ -515,6 +564,7 @@
         </div>
     </div>
 
+    <!-- Schermata Risultati -->
     <div id="result-screen" class="hidden">
         <div id="result-user-banner" class="user-banner">
             <div id="result-user-avatar" class="user-banner-avatar">👤</div>
@@ -591,6 +641,43 @@
 <!-- Carica il file con tutte le domande -->
 <script src="questions.js"></script>
 <script>
+    const introPhrases = [
+        "Rispondiamo una volta per tutte",
+        "Alla domanda che lascia turbati i sonni di molti:",
+        "“Ma Davide,",
+        "è un fascio, una zecca o una via di mezzo?”"
+    ];
+    let introIndex = 0;
+    let introAnimating = false;
+
+    function advanceIntro() {
+        if (introAnimating) return;
+
+        const stepEl = document.getElementById("intro-step");
+        const quoteEl = document.getElementById("intro-quote");
+
+        if (introIndex < introPhrases.length - 1) {
+            introAnimating = true;
+            if (quoteEl) quoteEl.classList.add("fading");
+
+            setTimeout(() => {
+                introIndex++;
+                if (stepEl) stepEl.innerText = `${introIndex + 1} / ${introPhrases.length}`;
+                if (quoteEl) {
+                    quoteEl.innerText = introPhrases[introIndex];
+                    quoteEl.classList.remove("fading");
+                }
+                introAnimating = false;
+            }, 320);
+        } else {
+            const welcomeEl = document.getElementById("welcome-screen");
+            const startEl = document.getElementById("start-screen");
+            if (welcomeEl) welcomeEl.classList.add("hidden");
+            if (startEl) startEl.classList.remove("hidden");
+            checkSavedProgress();
+        }
+    }
+
     const USER_PROFILE_KEY = "quiz_user_profile_v1";
     const PROGRESS_STORAGE_KEY = "quiz_in_progress_v1";
     const GOALS_STORAGE_KEY = "quiz_unlocked_ideologies_v1";
@@ -722,17 +809,10 @@
     }
 
     function backToHome() {
+        document.getElementById("welcome-screen").classList.add("hidden");
         document.getElementById("result-screen").classList.add("hidden");
         document.getElementById("quiz-screen").classList.add("hidden");
         document.getElementById("start-screen").classList.remove("hidden");
-        checkSavedProgress();
-    }
-
-    function enterStartScreen() {
-        const welcomeEl = document.getElementById("welcome-screen");
-        const startEl = document.getElementById("start-screen");
-        if (welcomeEl) welcomeEl.classList.add("hidden");
-        if (startEl) startEl.classList.remove("hidden");
         checkSavedProgress();
     }
 
@@ -1040,6 +1120,7 @@
             userAnswers = state.userAnswers;
             currentIdx = state.currentIdx;
 
+            document.getElementById("welcome-screen").classList.add("hidden");
             document.getElementById("start-screen").classList.add("hidden");
             document.getElementById("result-screen").classList.add("hidden");
             document.getElementById("quiz-screen").classList.remove("hidden");
@@ -1079,6 +1160,7 @@
         }));
         userAnswers = new Array(activeQuestions.length).fill(null);
 
+        document.getElementById('welcome-screen').classList.add('hidden');
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.add('hidden');
         document.getElementById('quiz-screen').classList.remove('hidden');
