@@ -497,6 +497,14 @@
 <body>
 
 <div class="container">
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+        <button type="button" id="music-toggle-btn" class="btn-reset" onclick="event.stopPropagation(); toggleBackgroundMusic();">
+            🔇 Musica: Off
+        </button>
+    </div>
+    <audio id="bg-music" src="audio-sottofondo.mp3" loop preload="none"></audio>
+    
     <!-- Schermata Introduttiva a click ovunque -->
     <div id="welcome-screen" onclick="advanceIntro()">
         <blockquote id="intro-quote" class="intro-quote">
@@ -648,6 +656,44 @@
     let introIndex = 0;
     let introAnimating = false;
 
+    let musicEnabled = false;
+
+    function updateMusicButton() {
+        const btn = document.getElementById("music-toggle-btn");
+        if (!btn) return;
+        btn.innerText = musicEnabled ? "🔊 Musica: On" : "🔇 Musica: Off";
+    }
+
+    function startBackgroundMusic() {
+        const audio = document.getElementById("bg-music");
+        if (!audio || musicEnabled) return;
+        audio.volume = 0.25;
+        audio.play().then(() => {
+            musicEnabled = true;
+            updateMusicButton();
+        }).catch(() => {});
+    }
+
+    function toggleBackgroundMusic() {
+        const audio = document.getElementById("bg-music");
+        if (!audio) return;
+        audio.volume = 0.25;
+
+        if (!musicEnabled) {
+            audio.play().then(() => {
+                musicEnabled = true;
+                updateMusicButton();
+            }).catch(() => {
+                musicEnabled = false;
+                updateMusicButton();
+            });
+        } else {
+            audio.pause();
+            musicEnabled = false;
+            updateMusicButton();
+        }
+    }
+    
     function advanceIntro() {
         if (introAnimating) return;
 
