@@ -2362,6 +2362,101 @@ const quizData = [
     ]
   },
   {
+        question: "Sei in macchina con tre persone, e c’è solo un posto libero, chi tra questi fai salire? Tieni a mente che chi non sale morirà di stenti.",
+        options: [
+            {
+                text: "Skinny",
+                ideologies: ["Estrema sinistra", "Sinistra", "Centro sinistra"]
+            },
+            {
+                text: "Edo",
+                ideologies: ["Centro", "Centro destra"]
+            },
+            {
+                text: "Miori",
+                ideologies: ["Centro destra", "Destra"]
+            },
+            {
+                text: "Regi",
+                ideologies: ["Destra"]
+            },
+            {
+                text: "Nessuno, tiro dritto",
+                ideologies: ["Estrema destra"]
+            }
+        ]
+    },
+    {
+        question: "Quale Hobby preferisci tra questi?",
+        options: [
+            {
+                text: "Parlare di politica",
+                ideologies: ["Estrema sinistra"]
+            },
+            {
+                text: "Lettura",
+                ideologies: ["Sinistra"]
+            },
+            {
+                text: "Videogiochi",
+                ideologies: ["Centro sinistra"]
+            },
+            {
+                text: "Stare all’aria aperta",
+                ideologies: ["Centro"]
+            },
+            {
+                text: "Il calcio",
+                ideologies: ["Centro destra"]
+            },
+            {
+                text: "Macchine brum brum",
+                ideologies: ["Destra"]
+            },
+            {
+                text: "La figa",
+                ideologies: ["Estrema destra"]
+            }
+        ]
+    },
+    {
+        question: "Chi tra questi è il tuo calciatore preferito?",
+        options: [
+            {
+                text: "Maradona",
+                ideologies: ["Estrema sinistra"]
+            },
+            {
+                text: "Sócrates",
+                ideologies: ["Sinistra"]
+            },
+            {
+                text: "Richarlison",
+                ideologies: ["Centro sinistra"]
+            },
+            {
+                text: "Cristiano Ronaldo",
+                ideologies: ["Centro"]
+            },
+            {
+                text: "Neymar",
+                ideologies: ["Centro destra"]
+            },
+            {
+                text: "Pionel Pessi",
+                ideologies: ["Destra"]
+            },
+            {
+                text: "Romano “Benito” Floriani Mussolini",
+                ideologies: ["Estrema destra"]
+            },
+            {
+                text: "Paolo di Canio",
+                ideologies: ["Estrema destra"]
+            }
+        ]
+    },
+  {
     "question": "Qual è il tuo personaggio del Signore degli Anelli preferito?",
     "options": [
       {
