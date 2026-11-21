@@ -886,7 +886,7 @@ const quizData = [
         "text": "No, il settore tecnologico deve essere lasciato libero di innovare: un'eccessiva regolamentazione rischia di frenare l'innovazione e danneggiare la competitività delle imprese.",
         "axes": { "Autorità": 20, "Eco": 80 },
         "ideologies": ["Destra"]
-      },
+      }
     ]
   },
   {
@@ -1256,7 +1256,8 @@ const quizData = [
           "Centro sinistra",
           "Estrema destra",
           "Centro"
-          }
+        ]
+      }
     ]
   },
   {
