@@ -1513,23 +1513,24 @@
             const total = axisTotals[axis];
             const count = axisCounts[axis];
             const avg = count > 0 ? Math.round(total / count) : 50;
+            const leftPct = 100 - avg;
             axisAverages[axis] = avg;
 
             const [leftLabel, rightLabel] = axisDescriptions[axis];
             axesContainer.innerHTML += `
                 <div class="axis-row">
                     <div class="axis-labels">
-                        <span>${leftLabel} (${100 - avg}%)</span>
+                        <span><strong>${leftLabel}</strong> (${leftPct}%)</span>
                         <strong>${axis}</strong>
-                        <span>(${avg}%) ${rightLabel}</span>
+                        <span>(${avg}%) <strong>${rightLabel}</strong></span>
                     </div>
-                    <div class="axis-bar-bg">
-                        <div class="axis-bar-fill" style="width: ${avg}%"></div>
+                    <div class="axis-bar-bg" title="${leftLabel}: ${leftPct}% | ${rightLabel}: ${avg}%">
+                        <div class="axis-bar-fill" style="width: ${avg}%;"></div>
                     </div>
                 </div>
             `;
         });
-
+        
         renderOctagonChart(axisAverages);
     }
 </script>
