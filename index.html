@@ -488,11 +488,76 @@
             margin-top: 8px;
             text-align: center;
         }
-        .axis-row { margin-bottom: 14px; }
-        .axis-labels { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; color: var(--muted); }
-        .axis-bar-bg { width: 100%; height: 12px; background: #334155; border-radius: 6px; position: relative; overflow: hidden; }
-        .axis-bar-fill { position: absolute; top: 0; bottom: 0; right: 0; height: 100%; background: #2563eb; border-radius: 6px; transition: width 0.5s; }
-    </style>
+        .axis-row {
+            margin-bottom: 18px;
+        }
+        .axis-title {
+            text-align: center;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .axis-bipolar-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .axis-pole-label {
+            width: 115px;
+            flex-shrink: 0;
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .axis-pole-label.left {
+            text-align: right;
+            color: #93c5fd;
+        }
+        .axis-pole-label.right {
+            text-align: left;
+            color: #fca5a5;
+        }
+        .axis-split-bar {
+            flex-grow: 1;
+            height: 28px;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            border: 1px solid #475569;
+            background: #0f172a;
+        }
+        .axis-part-left {
+            background: #2563eb;
+            color: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: width 0.5s ease;
+        }
+        .axis-part-right {
+            background: #dc2626;
+            color: #fef2f2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: width 0.5s ease;
+        }
+        @media (max-width: 600px) {
+            .axis-pole-label {
+                width: 82px;
+                font-size: 0.74rem;
+            }
+        }
+         </style>
 </head>
 <body>
 
@@ -1517,15 +1582,19 @@
             axisAverages[axis] = avg;
 
             const [leftLabel, rightLabel] = axisDescriptions[axis];
+            const leftText = leftPct >= 14 ? `${leftPct}%` : '';
+            const rightText = avg >= 14 ? `${avg}%` : '';
+
             axesContainer.innerHTML += `
                 <div class="axis-row">
-                    <div class="axis-labels">
-                        <span><strong>${leftLabel}</strong> (${leftPct}%)</span>
-                        <strong>${axis}</strong>
-                        <span>(${avg}%) <strong>${rightLabel}</strong></span>
-                    </div>
-                    <div class="axis-bar-bg" title="${leftLabel}: ${leftPct}% | ${rightLabel}: ${avg}%">
-                        <div class="axis-bar-fill" style="width: ${avg}%;"></div>
+                    <div class="axis-title">${axis}</div>
+                    <div class="axis-bipolar-wrap">
+                        <div class="axis-pole-label left">${leftLabel}</div>
+                        <div class="axis-split-bar" title="${leftLabel}: ${leftPct}% — ${rightLabel}: ${avg}%">
+                            <div class="axis-part-left" style="width: ${leftPct}%;">${leftText}</div>
+                            <div class="axis-part-right" style="width: ${avg}%;">${rightText}</div>
+                        </div>
+                        <div class="axis-pole-label right">${rightLabel}</div>
                     </div>
                 </div>
             `;
